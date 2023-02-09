@@ -96,7 +96,7 @@ a {
     height: 80vh;
     width: auto;
     content: "";
-    right: 0%;
+    right: -20%;
     top: 10%;
     box-shadow: 0px 0px 30px white;
     z-index: 100;

@@ -5,10 +5,6 @@ const bye = document.querySelector(".bye")
 const selfHit = document.querySelector(".selfHit")
 const alienHit = document.querySelector(".alienHit")
 
-console.log(selfHit)
-console.log(alienHit)
-
-
 const alienHull1 = document.querySelector("#Hull1")
 const alienHull2 = document.querySelector("#Hull2")
 const alienHull3 = document.querySelector("#Hull3")
@@ -28,7 +24,7 @@ function genRand(min, max, decimalPlaces) {
 
 let ship = {
     hull: 20,
-    firepower: 3,
+    firepower: 4,
     accuracy: 0.7,
 }
 
@@ -106,7 +102,6 @@ let currentAlienShip = 0;
 let retreat = "";
 
 function updateAlienHull (shipID) {
-    // let alienShip = aliens[shipID]
     let hit = ship.firepower;
 
     if ((shipID + 1) === 1) {
@@ -123,8 +118,8 @@ function updateAlienHull (shipID) {
             alienShip1.dead = true;
             alienHull1.innerText = "DEAD!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+
             if(retreat === "y") {
                 retreatAnimation();
                 return;
@@ -161,8 +156,9 @@ function updateAlienHull (shipID) {
             alienShip2.dead = true;
             alienHull2.innerText = "DEAD!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+
+
             if(retreat === "y") {
                 retreatAnimation();
                 return;
@@ -199,8 +195,9 @@ function updateAlienHull (shipID) {
             alienShip3.dead = true;
             alienHull3.innerText = "DEAD!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+
+
             if(retreat === "y") {
                 retreatAnimation();
                 return;
@@ -237,8 +234,9 @@ function updateAlienHull (shipID) {
             alienShip4.dead = true;
             alienHull4.innerText = "DEAD!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+
+
             if(retreat === "y") {
                 retreatAnimation();
                 return;
@@ -275,8 +273,9 @@ function updateAlienHull (shipID) {
             alienShip5.dead = true;
             alienHull5.innerText = "DEAD!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+
+
             if(retreat === "y") {
                 retreatAnimation();
                 return;
@@ -313,8 +312,9 @@ function updateAlienHull (shipID) {
             alienShip6.dead = true;
             alienHull6.innerText = "DEAD!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+
+
             if(retreat === "y") {
                 retreatAnimation();
                 return;
@@ -366,6 +366,7 @@ function shipDown() {
 }
 
 function retreatAnimation () {
+    console.log("HI????")
     // schwartz.style.opacity = "0"
     bye.style.opacity = "1"
     bye.style.top = "0%"
@@ -374,7 +375,15 @@ function retreatAnimation () {
 
 function updateHull (firepower) {
     ship.hull -= firepower;
+    
     userHealth.innerText = ship.hull;
+    setTimeout(() => {
+        if(ship.hull <= 0) {
+            userHealth.innerText = 0;
+            alert("YOU LOSE! MWAHAHAHAH");
+        }
+    },2000)
+    
 }
 
 attack.addEventListener("click", handleAttack)
