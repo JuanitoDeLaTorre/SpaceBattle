@@ -186,50 +186,154 @@ function updateAlienHull (shipID) {
 
         // *********** SHIP 3 **********
     } else if ((shipID + 1) === 3) {
-        alienShip3.hull -= hit;
+        if(ship.accuracy > Math.random()) {
+            alienShip3.hull -= hit;
+            showHit("alien");
+            console.log("DIRECT HIT!")
+            
+        } else {
+            console.log("YOU MISSED! REGROUP!")
+        }
+        
         if(alienShip3.hull <= 0) {
             alienShip3.dead = true;
             alienHull3.innerText = "DEAD!"
+            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
+
+            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            if(retreat === "y") {
+                retreatAnimation();
+                return;
+            }
+            shipDown();
             currentAlienShip++
 
         } else {
             alienHull3.innerText = alienShip3.hull;
+            if(alienShip3.accuracy > Math.random()) {
+                setTimeout(() => {
+                    updateHull(alienShip3.firepower);
+                },1000)
+                showHit("self");
+                console.log("ALIEN HIT! You took " + alienShip3.firepower + " damage!")
+
+            } else {
+                console.log("ALIEN MISS!")
+            }
         }
 
         // *********** SHIP 4 **********
     } else if ((shipID+ 1) === 4) {
-        alienShip4.hull -= hit;
+        if(ship.accuracy > Math.random()) {
+            alienShip4.hull -= hit;
+            showHit("alien");
+            console.log("DIRECT HIT!")
+            
+        } else {
+            console.log("YOU MISSED! REGROUP!")
+        }
+        
         if(alienShip4.hull <= 0) {
             alienShip4.dead = true;
             alienHull4.innerText = "DEAD!"
+            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
+
+            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            if(retreat === "y") {
+                retreatAnimation();
+                return;
+            }
+            shipDown();
             currentAlienShip++
 
         } else {
             alienHull4.innerText = alienShip4.hull;
+            if(alienShip4.accuracy > Math.random()) {
+                setTimeout(() => {
+                    updateHull(alienShip4.firepower);
+                },1000)
+                showHit("self");
+                console.log("ALIEN HIT! You took " + alienShip4.firepower + " damage!")
+
+            } else {
+                console.log("ALIEN MISS!")
+            }
         }
 
         // *********** SHIP 5 **********
     } else if ((shipID + 1) === 5) {
-        alienShip5.hull -= hit;
+        if(ship.accuracy > Math.random()) {
+            alienShip5.hull -= hit;
+            showHit("alien");
+            console.log("DIRECT HIT!")
+            
+        } else {
+            console.log("YOU MISSED! REGROUP!")
+        }
+        
         if(alienShip5.hull <= 0) {
             alienShip5.dead = true;
             alienHull5.innerText = "DEAD!"
+            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
+
+            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            if(retreat === "y") {
+                retreatAnimation();
+                return;
+            }
+            shipDown();
             currentAlienShip++
 
         } else {
             alienHull5.innerText = alienShip5.hull;
+            if(alienShip5.accuracy > Math.random()) {
+                setTimeout(() => {
+                    updateHull(alienShip5.firepower);
+                },1000)
+                showHit("self");
+                console.log("ALIEN HIT! You took " + alienShip5.firepower + " damage!")
+
+            } else {
+                console.log("ALIEN MISS!")
+            }
         }
 
         // *********** SHIP 6 **********
     } else if ((shipID + 1) === 6) {
-        alienShip6.hull -= hit;
+        if(ship.accuracy > Math.random()) {
+            alienShip6.hull -= hit;
+            showHit("alien");
+            console.log("DIRECT HIT!")
+            
+        } else {
+            console.log("YOU MISSED! REGROUP!")
+        }
+        
         if(alienShip6.hull <= 0) {
             alienShip6.dead = true;
             alienHull6.innerText = "DEAD!"
+            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
+
+            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            if(retreat === "y") {
+                retreatAnimation();
+                return;
+            }
+            shipDown();
             currentAlienShip++
 
         } else {
             alienHull6.innerText = alienShip6.hull;
+            if(alienShip6.accuracy > Math.random()) {
+                setTimeout(() => {
+                    updateHull(alienShip6.firepower);
+                },1000)
+                showHit("self");
+                console.log("ALIEN HIT! You took " + alienShip6.firepower + " damage!")
+
+            } else {
+                console.log("ALIEN MISS!")
+            }
         }
     }
     // if(currentAlienShip === 6) {
