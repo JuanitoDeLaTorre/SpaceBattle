@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 body {
     background-color: black;
-    width: 50vw;
-    margin: 10% auto 30% auto;
+    width: 30vw;
+    margin: 5% auto 30% auto;
     height: 50vh;
     font-family: "Orbitron";
     color: white;
@@ -17,6 +17,10 @@ p {
 .attack {
     text-align: center;
     cursor: grab;
+}
+
+.battleStation {
+    margin-bottom: 40px;
 }
 
 .aliens {
@@ -36,7 +40,6 @@ ul {
 ul > li {
     height: 350px;
     gap: 30px;
-    /* border: solid red 3px; */
 }
 
 li > p {
@@ -54,14 +57,17 @@ img {
     height: 125px;
     
     width: auto;
-    /* outline: solid white 3px; */
-    /* outline: solid white 4px;
-    border-radius: 100%;
-    outline-offset: 50px; */
 }
 
 a {
     color: white;
+    font-size: 10px;
+}
+
+h4 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 5px;
 }
 
 .userHealth {
@@ -78,13 +84,51 @@ a {
 }
 
 .alerts {
-    display: flex;
+    /* display: flex; */
+    color: white;
+    height: auto;
+    width: 800px;
+    margin: 0;
+    padding: 0;
     justify-content: center;
-    padding-left: 100px;
+    /* padding-left: 100px; */
     gap: 150px;
+    border: solid red 3px;
+}
+
+
+.alerts > ul {
+    display: inline;
+    margin-left: 0px;
+    display: inline;
+    list-style-type: none;
+    text-align: left;
+}
+
+.messages {
+    position: absolute;
+    content: "";
+    left: -300px;
+    top: 200px;
+    height: 75px;
+    width: 1000px;
+    /* border: solid green 2px; */
 }
 
 .selfHit {
+    color: red;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+    
+}
+
+.alienMiss {
+    color: green;
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+}
+
+.selfMiss {
     color: red;
     opacity: 0;
     transition: all 300ms ease-in-out;
@@ -96,21 +140,21 @@ a {
     height: 80vh;
     width: auto;
     content: "";
-    right: -20%;
-    top: 10%;
+    right: -70%;
+    top: -5%;
     box-shadow: 0px 0px 30px white;
     z-index: 100;
 }
 
 .bye {
     opacity: 0;
-    /* transform: translateX(2000); */
     position: absolute;
     height: 60vh;
     width: auto;
     content: "";
-    right: 0%;
+    right: -50%;
     top: 100%;
     box-shadow: 0px 0px 30px white; 
     transition: all 500ms;
 }
+

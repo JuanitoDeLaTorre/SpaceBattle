@@ -4,6 +4,9 @@ const schwartz = document.querySelector(".schwartz")
 const bye = document.querySelector(".bye")
 const selfHit = document.querySelector(".selfHit")
 const alienHit = document.querySelector(".alienHit")
+const selfMiss = document.querySelector(".selfMiss")
+const alienMiss = document.querySelector(".alienMiss")
+
 
 const alienHull1 = document.querySelector("#Hull1")
 const alienHull2 = document.querySelector("#Hull2")
@@ -24,7 +27,7 @@ function genRand(min, max, decimalPlaces) {
 
 let ship = {
     hull: 20,
-    firepower: 4,
+    firepower: 1,
     accuracy: 0.7,
 }
 
@@ -111,6 +114,7 @@ function updateAlienHull (shipID) {
             console.log("DIRECT HIT!")
             
         } else {
+            showMiss("self")
             console.log("YOU MISSED! REGROUP!")
         }
         
@@ -137,6 +141,7 @@ function updateAlienHull (shipID) {
                 console.log("ALIEN HIT! You took " + alienShip1.firepower + " damage!")
 
             } else {
+                showMiss("alien")
                 console.log("ALIEN MISS!")
             }
         }
@@ -332,6 +337,7 @@ function updateAlienHull (shipID) {
                 console.log("ALIEN HIT! You took " + alienShip6.firepower + " damage!")
 
             } else {
+                
                 console.log("ALIEN MISS!")
             }
         }
@@ -358,6 +364,23 @@ function showHit(type) {
     }
 }
 
+function showMiss (type) {
+    if(type === "self") {
+        selfMiss.style.opacity = "1"
+        setTimeout(() => {
+            selfMiss.style.opacity = "0";
+        },2000)
+
+    } else if(type === "alien"){
+        alienMiss.style.opacity = "1"
+        setTimeout(() => {
+            alienMiss.style.opacity = "0";
+        },2000)
+    }
+}
+
+
+
 function shipDown() {
     schwartz.style.display = "block"
     setTimeout(()=> {
@@ -366,8 +389,6 @@ function shipDown() {
 }
 
 function retreatAnimation () {
-    console.log("HI????")
-    // schwartz.style.opacity = "0"
     bye.style.opacity = "1"
     bye.style.top = "0%"
     bye.style.height = "80vh"
@@ -395,3 +416,69 @@ function handleAttack() {
     updateAlienHull(currentAlienShip);
 }
 
+// let num = 13195;
+
+// function findFactors(num) {
+//     let factorsList = []
+
+//     for(let i = 0; i < num; i++) {
+//         if(num % i === 0) {
+//             factorsList.push(i)
+//         }
+//     }
+//     return factorsList;
+// }
+
+// function checkPrime(num) {
+
+//     if(num === 1) {
+//         return false;
+//     } else if (num === 2) {
+//         return true;
+//     } else {
+//         for(let i = 2; i < Math.floor(Math.sqrt(num)) + 1; i++) {
+//             if(num % i === 0) {
+//                 return false;
+//             }
+
+//         }
+//     }
+//     return true;
+// }
+
+// let primesList = []
+
+// for(let i = 0; i < findFactors(num).length; i++) {
+    
+//     if(checkPrime(findFactors(num)[i])) {
+//         primesList.push(findFactors(num)[i]);
+//     }
+    
+// }
+
+// console.log(Math.max.apply(Math, primesList))
+// console.log(checkPrime(Math.max(findFactors(num))))
+
+// const students = [
+//     "Brandon", "David", "Johnathan P", "John T", "Joshua", "Leo", "Luke", "Sean", "Wylie", "Ahmad"
+// ];
+
+// function isAVowel(letter) {
+//     letter = letter.toLowerCase();
+//     if(letter == 'a' | letter == 'e' | letter == 'i' | letter == 'o' | letter == 'u') {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
+
+// function returnFirstVowel(array) {
+//     for(let i = 0;  i < array.length; i++) {
+
+//         if(isAVowel(array[i].charAt(0))) {
+//             return array[i]
+//         }
+//     }
+// }
+
+// console.log(returnFirstVowel(students))
