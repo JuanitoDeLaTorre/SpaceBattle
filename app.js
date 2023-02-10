@@ -26,6 +26,8 @@ function genRand(min, max, decimalPlaces) {
     return Math.floor(rand*power) / power;
 }
 
+// DECLARE SHIP AND ALIEN SHIP OBJECTS / INITIALIZE RAND VALUES FOR ALIEN SHIPS
+
 
 let ship = {
     hull: 20,
@@ -77,7 +79,11 @@ let alienShip6 = {
     dead: false
 }
 
+//CREATE LIST OF ALIEN SHIPS
+
 let aliens = [alienShip1,alienShip2,alienShip3,alienShip4,alienShip5,alienShip6]
+
+//INITIALIZE ALIEN SHIP HEALTH IN DOM
 
 for(let i = 0; i < aliens.length; i++) {
     alienHull1.innerText = alienShip1.hull
@@ -89,13 +95,29 @@ for(let i = 0; i < aliens.length; i++) {
 
 }
 
+//INITIALIZE HELPER VARIABLES
+
 let currentAlienShip = 0;
 let retreat = "";
 
+//MAIN ACTION FUNCTION (Comments made only on first ship - all six are identical)
+
 function updateAlienHull (shipID) {
+
+    //CHECK VICTORY
+    if(currentAlienShip === 6) {
+        victory.style.display = "block"
+        return console.log("You won!");
+    }
+
+    //ASSIGN DAMAGE VALUE
+
     let hit = ship.firepower;
 
     if ((shipID + 1) === 1) {
+
+        //SELF ACCURACY CHECK
+
         if(ship.accuracy > Math.random()) {
             alienShip1.hull -= hit;
             showHit("alien");
@@ -105,10 +127,13 @@ function updateAlienHull (shipID) {
             showMiss("self")
             console.log("YOU MISSED! REGROUP!")
         }
+
+        //CHECK FOR ALIEN SHIP DAMANGE OR DEATH / OFFER RETREAT
         
         if(alienShip1.hull <= 0) {
             alienShip1.dead = true;
-            alienHull1.innerText = "DEAD!"
+            alienHull1.style.fontSize = "18px"
+            alienHull1.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
 
@@ -147,7 +172,8 @@ function updateAlienHull (shipID) {
         
         if(alienShip2.hull <= 0) {
             alienShip2.dead = true;
-            alienHull2.innerText = "DEAD!"
+            alienHull2.style.fontSize = "18px"
+            alienHull2.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
 
@@ -186,7 +212,8 @@ function updateAlienHull (shipID) {
         
         if(alienShip3.hull <= 0) {
             alienShip3.dead = true;
-            alienHull3.innerText = "DEAD!"
+            alienHull3.style.fontSize = "18px"
+            alienHull3.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
 
@@ -225,7 +252,8 @@ function updateAlienHull (shipID) {
         
         if(alienShip4.hull <= 0) {
             alienShip4.dead = true;
-            alienHull4.innerText = "DEAD!"
+            alienHull4.style.fontSize = "18px"
+            alienHull4.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
 
@@ -264,7 +292,8 @@ function updateAlienHull (shipID) {
         
         if(alienShip5.hull <= 0) {
             alienShip5.dead = true;
-            alienHull5.innerText = "DEAD!"
+            alienHull5.style.fontSize = "18px"
+            alienHull5.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
 
@@ -303,7 +332,8 @@ function updateAlienHull (shipID) {
         
         if(alienShip6.hull <= 0) {
             alienShip6.dead = true;
-            alienHull6.innerText = "DEAD!"
+            alienHull6.style.fontSize = "18px"
+            alienHull6.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
 
@@ -333,6 +363,8 @@ function updateAlienHull (shipID) {
    
 }
 
+//SHOW HIT INDICATORS IN DOM
+
 function showHit(type) {
     if(type === "self") {
         selfHit.style.opacity = "1"
@@ -347,6 +379,8 @@ function showHit(type) {
         },2000)
     }
 }
+
+//SHOW MISS INDICATORS IN DOM
 
 function showMiss (type) {
     if(type === "self") {
@@ -363,7 +397,7 @@ function showMiss (type) {
     }
 }
 
-
+//DISPLAY ALIEN SHIP DEATH GIF
 
 function shipDown() {
     schwartz.style.display = "block"
@@ -372,11 +406,15 @@ function shipDown() {
     },3000)
 }
 
+//DISPLAY RETREAT GIF
+
 function retreatAnimation () {
     bye.style.opacity = "1"
     bye.style.top = "0%"
     bye.style.height = "80vh"
 }
+
+//UPDATE USER HULL IN OBJECT AND DOM
 
 function updateHull (firepower) {
     ship.hull -= firepower;
@@ -390,6 +428,8 @@ function updateHull (firepower) {
     },2000)
     
 }
+
+//POINTLESS EVENT LISTENER/FUNCTION COMBO BECAUSE IT BREAKS IF I TRY ANYTHING ELSE
 
 attack.addEventListener("click", handleAttack)
 
