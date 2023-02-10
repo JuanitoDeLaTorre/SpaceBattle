@@ -19,6 +19,7 @@ const alienHull6 = document.querySelector("#Hull6")
 
 
 
+
 //function taken from https://stackoverflow.com/questions/45735472/generate-a-random-number-between-2-values-to-2-decimals-places-in-javascript
 function genRand(min, max, decimalPlaces) {  
     var rand = Math.random() < 0.5 ? ((1-Math.random()) * (max-min) + min) : (Math.random() * (max-min) + min);  // could be min or max or anything in between
@@ -167,6 +168,7 @@ function updateAlienHull (shipID) {
             console.log("DIRECT HIT!")
             
         } else {
+            showMiss("self")
             console.log("YOU MISSED! REGROUP!")
         }
         
@@ -207,6 +209,7 @@ function updateAlienHull (shipID) {
             console.log("DIRECT HIT!")
             
         } else {
+            showMiss("self")
             console.log("YOU MISSED! REGROUP!")
         }
         
@@ -247,6 +250,7 @@ function updateAlienHull (shipID) {
             console.log("DIRECT HIT!")
             
         } else {
+            showMiss("self")
             console.log("YOU MISSED! REGROUP!")
         }
         
@@ -287,6 +291,7 @@ function updateAlienHull (shipID) {
             console.log("DIRECT HIT!")
             
         } else {
+            showMiss("self")
             console.log("YOU MISSED! REGROUP!")
         }
         
@@ -327,6 +332,7 @@ function updateAlienHull (shipID) {
             console.log("DIRECT HIT!")
             
         } else {
+            showMiss("self")
             console.log("YOU MISSED! REGROUP!")
         }
         
