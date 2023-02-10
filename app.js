@@ -2,6 +2,8 @@ const attack = document.querySelector(".attack");
 const userHealth = document.querySelector(".userHealth");
 const schwartz = document.querySelector(".schwartz")
 const bye = document.querySelector(".bye")
+const over = document.querySelector(".gameOver")
+const victory = document.querySelector(".victory")
 const selfHit = document.querySelector(".selfHit")
 const alienHit = document.querySelector(".alienHit")
 const selfMiss = document.querySelector(".selfMiss")
@@ -27,7 +29,7 @@ function genRand(min, max, decimalPlaces) {
 
 let ship = {
     hull: 20,
-    firepower: 1,
+    firepower: 4,
     accuracy: 0.7,
 }
 
@@ -86,20 +88,6 @@ for(let i = 0; i < aliens.length; i++) {
     alienHull6.innerText = alienShip6.hull
 
 }
-
-
-// console.log(alienShip1.hull)
-// console.log(alienShip1.firepower)
-// console.log(alienShip1.accuracy)
-
-let quit = false;
-
-// do {
-//     let swag = prompt("You've been attacked!")
-//     if (swag === "quit") {
-//         break;
-//     }
-// } while(!quit);
 
 let currentAlienShip = 0;
 let retreat = "";
@@ -342,12 +330,8 @@ function updateAlienHull (shipID) {
             }
         }
     }
-    // if(currentAlienShip === 6) {
-    //     prompt("OK YOU WON!")
-    // } 
+   
 }
-
-// alienHit.style.opacity = "1"
 
 function showHit(type) {
     if(type === "self") {
@@ -401,7 +385,7 @@ function updateHull (firepower) {
     setTimeout(() => {
         if(ship.hull <= 0) {
             userHealth.innerText = 0;
-            alert("YOU LOSE! MWAHAHAHAH");
+            over.style.display = "block"
         }
     },2000)
     
@@ -411,74 +395,7 @@ attack.addEventListener("click", handleAttack)
 
 function handleAttack() {
     if(currentAlienShip === 6) {
-        alert("OK OK YOU WON!")
+        victory.style.display = "block"
     }
     updateAlienHull(currentAlienShip);
 }
-
-// let num = 13195;
-
-// function findFactors(num) {
-//     let factorsList = []
-
-//     for(let i = 0; i < num; i++) {
-//         if(num % i === 0) {
-//             factorsList.push(i)
-//         }
-//     }
-//     return factorsList;
-// }
-
-// function checkPrime(num) {
-
-//     if(num === 1) {
-//         return false;
-//     } else if (num === 2) {
-//         return true;
-//     } else {
-//         for(let i = 2; i < Math.floor(Math.sqrt(num)) + 1; i++) {
-//             if(num % i === 0) {
-//                 return false;
-//             }
-
-//         }
-//     }
-//     return true;
-// }
-
-// let primesList = []
-
-// for(let i = 0; i < findFactors(num).length; i++) {
-    
-//     if(checkPrime(findFactors(num)[i])) {
-//         primesList.push(findFactors(num)[i]);
-//     }
-    
-// }
-
-// console.log(Math.max.apply(Math, primesList))
-// console.log(checkPrime(Math.max(findFactors(num))))
-
-// const students = [
-//     "Brandon", "David", "Johnathan P", "John T", "Joshua", "Leo", "Luke", "Sean", "Wylie", "Ahmad"
-// ];
-
-// function isAVowel(letter) {
-//     letter = letter.toLowerCase();
-//     if(letter == 'a' | letter == 'e' | letter == 'i' | letter == 'o' | letter == 'u') {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
-
-// function returnFirstVowel(array) {
-//     for(let i = 0;  i < array.length; i++) {
-
-//         if(isAVowel(array[i].charAt(0))) {
-//             return array[i]
-//         }
-//     }
-// }
-
-// console.log(returnFirstVowel(students))

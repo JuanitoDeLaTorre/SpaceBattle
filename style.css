@@ -60,9 +60,10 @@ img {
 }
 
 a {
-    color: white;
+    color: rgb(108, 108, 108);
     font-size: 10px;
 }
+
 
 h4 {
     text-align: center;
@@ -84,14 +85,12 @@ h4 {
 }
 
 .alerts {
-    /* display: flex; */
     color: white;
     height: auto;
     width: 800px;
     margin: 0;
     padding: 0;
     justify-content: center;
-    /* padding-left: 100px; */
     gap: 150px;
     border: solid red 3px;
 }
@@ -112,7 +111,6 @@ h4 {
     top: 200px;
     height: 75px;
     width: 1000px;
-    /* border: solid green 2px; */
 }
 
 .selfHit {
@@ -152,9 +150,33 @@ h4 {
     height: 60vh;
     width: auto;
     content: "";
-    right: -50%;
+    right: -70%;
     top: 100%;
     box-shadow: 0px 0px 30px white; 
     transition: all 500ms;
+}
+
+.gameOver {
+    display: none;
+    position: absolute;
+    height: 130vh;
+    width: auto;
+    content: "";
+    right: -100%;
+    top: -20%;
+    box-shadow: 0px 0px 30px white;
+    z-index: 100;
+}
+
+.victory {
+    display: none;
+    position: absolute;
+    height: 100vh;
+    width: auto;
+    content: "";
+    right: -70%;
+    top: -20%;
+    box-shadow: 0px 0px 30px white;
+    z-index: 100;
 }
 
