@@ -4,6 +4,7 @@ const schwartz = document.querySelector(".schwartz")
 const bye = document.querySelector(".bye")
 const over = document.querySelector(".gameOver")
 const victory = document.querySelector(".victory")
+const explanation = document.querySelector(".explanation")
 const selfHit = document.querySelector(".selfHit")
 const alienHit = document.querySelector(".alienHit")
 const selfMiss = document.querySelector(".selfMiss")
@@ -443,5 +444,6 @@ function handleAttack() {
     if(currentAlienShip === 6) {
         victory.style.display = "block"
     }
+    explanation.style.opacity = "0"
     updateAlienHull(currentAlienShip);
 }

@@ -77,6 +77,31 @@ h4 {
     margin-bottom: 5px;
 }
 
+.explanation {
+    text-align: left;
+    position: absolute;
+    width: 500px;
+    height: auto;
+    padding-top: 5px;
+    left: -100%;
+    top: -15%;
+    font-size: 0.75em;
+    border: solid red 3px;
+    transition: all 1000ms ease-out;
+}
+
+.explanation > h4 {
+    font-size: 2em;
+}
+
+.explanation > ol {
+    text-align: left;
+    display: flex;
+    list-style-type: disc;
+    gap: 30px;
+}
+
+
 .userHealth {
     margin: auto;
     display: block;
