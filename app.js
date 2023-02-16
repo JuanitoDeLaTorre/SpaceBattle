@@ -1,3 +1,5 @@
+// import {negativeIndexes} from '/Users/johnthomas/Downloads/use-negative-indexes-main/node_modules/use-negative-indexes'
+
 const attack = document.querySelector(".attack");
 const userHealth = document.querySelector(".userHealth");
 const schwartz = document.querySelector(".schwartz")
@@ -9,6 +11,11 @@ const selfHit = document.querySelector(".selfHit")
 const alienHit = document.querySelector(".alienHit")
 const selfMiss = document.querySelector(".selfMiss")
 const alienMiss = document.querySelector(".alienMiss")
+const timer = document.querySelector(".timer")
+const slider = document.querySelector("#slider")
+const gifCheck = document.querySelector("#gifCheck")
+const message = document.querySelector("#message")
+const messageBoard = document.querySelector(".messageBoard")
 
 
 const alienHull1 = document.querySelector("#Hull1")
@@ -18,6 +25,14 @@ const alienHull4 = document.querySelector("#Hull4")
 const alienHull5 = document.querySelector("#Hull5")
 const alienHull6 = document.querySelector("#Hull6")
 
+gifCheck.addEventListener('change', function() {
+    if (this.checked) {
+      console.log("Checkbox is checked..");
+    } else {
+      console.log("Checkbox is not checked..");
+    }
+  });
+
 
 
 
@@ -26,6 +41,16 @@ function genRand(min, max, decimalPlaces) {
     var rand = Math.random() < 0.5 ? ((1-Math.random()) * (max-min) + min) : (Math.random() * (max-min) + min);  // could be min or max or anything in between
     var power = Math.pow(10, decimalPlaces);
     return Math.floor(rand*power) / power;
+}
+
+class AlienShip {
+
+    constructor(hull, firepower, accuracy) {
+        this.hull = hull;
+        this.firepower = firepower;
+        this.accuracy = accuracy;
+    }
+
 }
 
 // DECLARE SHIP AND ALIEN SHIP OBJECTS / INITIALIZE RAND VALUES FOR ALIEN SHIPS
@@ -137,7 +162,8 @@ function updateAlienHull (shipID) {
             alienHull1.style.fontSize = "18px"
             alienHull1.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            showShipDestroyMessage(1)
+            // retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
 
             if(retreat === "y") {
                 retreatAnimation();
@@ -178,7 +204,7 @@ function updateAlienHull (shipID) {
             alienHull2.style.fontSize = "18px"
             alienHull2.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            showShipDestroyMessage(2);
 
 
             if(retreat === "y") {
@@ -219,7 +245,7 @@ function updateAlienHull (shipID) {
             alienHull3.style.fontSize = "18px"
             alienHull3.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            showShipDestroyMessage(3);
 
 
             if(retreat === "y") {
@@ -260,7 +286,7 @@ function updateAlienHull (shipID) {
             alienHull4.style.fontSize = "18px"
             alienHull4.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            showShipDestroyMessage(4);
 
 
             if(retreat === "y") {
@@ -301,7 +327,7 @@ function updateAlienHull (shipID) {
             alienHull5.style.fontSize = "18px"
             alienHull5.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            showShipDestroyMessage(5);
 
 
             if(retreat === "y") {
@@ -342,7 +368,7 @@ function updateAlienHull (shipID) {
             alienHull6.style.fontSize = "18px"
             alienHull6.innerText = "DESTROYED!"
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-            retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
+            showShipDestroyMessage(6);
 
 
             if(retreat === "y") {
@@ -368,6 +394,16 @@ function updateAlienHull (shipID) {
         }
     }
    
+}
+
+//DISPLAY DOWNED SHIP MESSAGE
+
+function showShipDestroyMessage(shipNum) {
+    messageBoard.style.opacity = "1"
+    message.innerText = `You've destroyed ship #${shipNum}! Press escape to retreat or keep firing!`
+    setTimeout(()=> {
+        messageBoard.style.opacity = "0"
+    },6000)
 }
 
 //SHOW HIT INDICATORS IN DOM
@@ -407,10 +443,12 @@ function showMiss (type) {
 //DISPLAY ALIEN SHIP DEATH GIF
 
 function shipDown() {
-    schwartz.style.display = "block"
-    setTimeout(()=> {
-        schwartz.style.display = "none"
-    },3000)
+    if(gifCheck.checked){
+        schwartz.style.display = "block"
+        setTimeout(()=> {
+            schwartz.style.display = "none"
+        },3000)
+    }
 }
 
 //DISPLAY RETREAT GIF
@@ -447,3 +485,72 @@ function handleAttack() {
     explanation.style.opacity = "0"
     updateAlienHull(currentAlienShip);
 }
+
+let startTime = 40
+timer.innerText = startTime;
+
+// timer.addEventListener("click",()=> {
+//     if(timer.classList.contains("running")){
+//         timer.classList.remove("running")
+//         timer.innerHTML = startTime;
+//         clearInterval(set)
+//         console.log("I should stop!")
+//     } else {
+//         timer.classList.add("running")
+//         let set = setInterval(()=> {
+//             if(startTime === 0){
+//                 clearInterval(set);
+//                 alert("TIME'S UP")
+//             } else {
+//                 startTime--
+//                 timer.innerText = startTime;
+//             }
+            
+//         },1000)
+//     }
+    
+    
+// })
+
+timer.addEventListener("click",startTimer)
+
+
+function startTimer() {
+    if(!timer.classList.contains("running")){
+        timer.classList.add("running")
+
+        let set = setInterval(()=> {
+            if(startTime === 0){
+                clearInterval(set);
+                alert("TIME'S UP")
+            } else if (startTime <= 6){
+                timer.style.color = "red"
+                startTime--
+                timer.innerText = startTime;
+            } else {
+                startTime--
+                timer.innerText = startTime;
+            }
+            
+        },1000)
+    } else {
+        timer.innerText = startTime
+        timer.classList.remove("running")
+        clearInterval(set)
+    }
+    
+}
+
+// for(let i = startTime; i > 0;i--){
+//     setTimeout(()=>{
+//         console.log("Fireing?")
+//         timer.innerHTML = startTime
+//     },1000)
+// }
+
+function changeTimer() {
+    console.log("changing")
+    startTime = slider.value
+    timer.innerText = slider.value
+}
+

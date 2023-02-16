@@ -15,6 +15,19 @@
     <img src="./Resources/game-over-glitch.gif" class = "gameOver" alt="">
     <img src="./Resources/victory.gif" class = "victory" alt="">
 
+    <div class="timer"></div>
+    <input type="range" min = "10" max = "60" name="" id="slider" step = "5" oninput=changeTimer()>
+
+    <div class="gifDiv">
+        <label for="GIF">GIF's on</label>
+        <input type="checkbox" name="GIF" id="gifCheck">
+    </div>
+    
+    
+    
+
+    
+
     <div class="explanation">
         <h4>Welcome to the galaxy space attack game!</h4>
         <p>Each round will go like this:</p>
@@ -84,6 +97,10 @@
             </li>
         </ul>
     </div>
+    <div class="messageBoard">
+        <h2 id = "message">SHIP DESTROYED!</h2>
+    </div>
+    
     
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <a href="https://www.flaticon.com/free-icons/sword" title="sword icons">Sword/alien icons created by Freepik - Flaticon</a>
