@@ -14,13 +14,14 @@ const alienMiss = document.querySelector(".alienMiss")
 const shipsDestroyedDOM = document.querySelector(".shipsDestroyed")
 const timer = document.querySelector(".timer")
 const slider = document.querySelector("#slider")
-const gifCheck = document.querySelector("#gifCheck")
 const message = document.querySelector("#message")
 const messageBoard = document.querySelector(".messageBoard")
 const startMessage = document.querySelector(".startMessage")
 const startGIF = document.querySelector("#startGIF")
 const header = document.querySelector(".header")
 const options = document.querySelector(".options")
+let lofi = new Audio("Resources/yt5s.io - mechanical Ivy (128 kbps).mp3")
+const pause = document.querySelector(".pause")
 
 const chill = document.querySelector("#chillBlock")
 const classic = document.querySelector("#classicBlock")
@@ -28,6 +29,7 @@ const challenge = document.querySelector("#challengeBlock")
 
 let shipsDestroyed = 0;
 let gameType = "none";
+let gifs = false;
 
 
 const alienHull1 = document.querySelector("#Hull1")
@@ -47,8 +49,11 @@ chill.addEventListener("click",()=> {
     aliens.forEach(ship => {
         setParams(20,[3,5],1,ship,[4,7],[2,3],[0.6,0.8])
     })
-    gifCheck = true;
+    gifs = true;
     console.log(aliens)
+    lofi.play()
+    lofi.volume = 0.1;
+    pause.classList.add("playing");
 })
 
 classic.addEventListener("click",()=> {
@@ -59,7 +64,7 @@ classic.addEventListener("click",()=> {
     aliens.forEach(ship => {
         setParams(20,[2,4],0.8,ship,[5,9],[3,4],[0.65,0.8])
     })
-    gifCheck = true;
+    gifs = true;
     console.log(aliens)
 
 })
@@ -72,22 +77,26 @@ challenge.addEventListener("click",()=> {
     aliens.forEach(ship => {
         setParams(15,[2,4],0.6,ship,[7,11],[3,6],[0.7,0.85])
     })
-    gifCheck = false;
+    gifs = false;
     console.log(aliens) 
 
 })
 
-//GIF CHECK LISTENER
-
-gifCheck.addEventListener('change', function() {
-    if (this.checked) {
-      console.log("Checkbox is checked..");
+pause.addEventListener("click",() => {
+    if(pause.classList.contains("playing")){
+        pause.innerText = "Play Music"
+        pause.classList.remove("playing")
+        lofi.pause()
     } else {
-      console.log("Checkbox is not checked..");
+        pause.innerText = "Pause Music"
+        pause.classList.add("playing")
+        lofi.play()
     }
-  });
+    
+})
 
-  startMessage.style.opacity = "1"
+
+startMessage.style.opacity = "1"
 
 header.addEventListener("mouseover", ()=>{
     // header.classList.add("expanded")
@@ -534,7 +543,7 @@ function showMiss (type) {
 //DISPLAY ALIEN SHIP DEATH GIF
 
 function shipDown() {
-    if(gifCheck.checked){
+    if(gifs){
         schwartz.style.display = "block"
         setTimeout(()=> {
             schwartz.style.display = "none"
