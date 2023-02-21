@@ -27,6 +27,7 @@ const classic = document.querySelector("#classicBlock")
 const challenge = document.querySelector("#challengeBlock")
 
 let shipsDestroyed = 0;
+let gameType = "none";
 
 
 const alienHull1 = document.querySelector("#Hull1")
@@ -35,6 +36,48 @@ const alienHull3 = document.querySelector("#Hull3")
 const alienHull4 = document.querySelector("#Hull4")
 const alienHull5 = document.querySelector("#Hull5")
 const alienHull6 = document.querySelector("#Hull6")
+
+//START MESSAGE EVENT LISTENERS
+
+chill.addEventListener("click",()=> {
+    console.log("CHILL SELECTED")
+    startMessage.style.display = "none"
+    gameType = "chill"
+
+    aliens.forEach(ship => {
+        setParams(20,[3,5],1,ship,[4,7],[2,3],[0.6,0.8])
+    })
+    gifCheck = true;
+    console.log(aliens)
+})
+
+classic.addEventListener("click",()=> {
+    console.log("CLASSIC SELECTED")
+    startMessage.style.display = "none"
+    gameType = "classic"
+
+    aliens.forEach(ship => {
+        setParams(20,[2,4],0.8,ship,[5,9],[3,4],[0.65,0.8])
+    })
+    gifCheck = true;
+    console.log(aliens)
+
+})
+
+challenge.addEventListener("click",()=> {
+    console.log("CHALLENGE SELECTED")
+    startMessage.style.display = "none"
+    gameType = "challenge"
+
+    aliens.forEach(ship => {
+        setParams(15,[2,4],0.6,ship,[7,11],[3,6],[0.7,0.85])
+    })
+    gifCheck = false;
+    console.log(aliens) 
+
+})
+
+//GIF CHECK LISTENER
 
 gifCheck.addEventListener('change', function() {
     if (this.checked) {
@@ -50,24 +93,11 @@ header.addEventListener("mouseover", ()=>{
     // header.classList.add("expanded")
     header.style.transform = "translateY(-100px)"
     options.style.opacity = "1"
-    options.style.gap = "150px"
+    options.style.gap = "90px"
     options.style.transform = "translateY(0)"
 })
 
-chill.addEventListener("click",()=> {
-    console.log("CHILL SELECTED")
-    startMessage.style.display = "none"
-})
 
-classic.addEventListener("click",()=> {
-    console.log("CLASSIC SELECTED")
-    startMessage.style.display = "none"
-})
-
-challenge.addEventListener("click",()=> {
-    console.log("CHALLENGE SELECTED")
-    startMessage.style.display = "none"
-})
 
 
 
@@ -98,7 +128,6 @@ let ship = {
     accuracy: 0.7,
 }
 
-userHealth.innerText = ship.hull;
 
 let alienShip1 = {
     hull: genRand(3,7,0),
@@ -142,19 +171,43 @@ let alienShip6 = {
     dead: false
 }
 
+
+
+
+
 //CREATE LIST OF ALIEN SHIPS
 
 let aliens = [alienShip1,alienShip2,alienShip3,alienShip4,alienShip5,alienShip6]
 
+function setParams(selfHull, selfFirepowerRange, selfAccuracy,shipNum,hullRange,firepowerRange,accuracyRange) {
+    //SET SELF
+    ship.hull = selfHull
+    ship.firepower = genRand(selfFirepowerRange[0],selfFirepowerRange[1],0)
+    ship.accuracy = selfAccuracy
+
+    //SET ALIENS
+    shipNum.hull = genRand(hullRange[0],hullRange[1],0)
+    shipNum.firepower = genRand(firepowerRange[0],firepowerRange[1],0)
+    shipNum.accuracy = genRand(accuracyRange[0],accuracyRange[1],1)
+
+
+    updateHealth()
+}
+
+
 //INITIALIZE ALIEN SHIP HEALTH IN DOM
 
-for(let i = 0; i < aliens.length; i++) {
-    alienHull1.innerText = alienShip1.hull
-    alienHull2.innerText = alienShip2.hull
-    alienHull3.innerText = alienShip3.hull
-    alienHull4.innerText = alienShip4.hull
-    alienHull5.innerText = alienShip5.hull
-    alienHull6.innerText = alienShip6.hull
+function updateHealth(){
+    for(let i = 0; i < aliens.length; i++) {
+        alienHull1.innerText = alienShip1.hull
+        alienHull2.innerText = alienShip2.hull
+        alienHull3.innerText = alienShip3.hull
+        alienHull4.innerText = alienShip4.hull
+        alienHull5.innerText = alienShip5.hull
+        alienHull6.innerText = alienShip6.hull
+
+    }
+    userHealth.innerText = ship.hull;
 
 }
 
@@ -598,5 +651,3 @@ document.onkeydown = (e) => {
         retreatAnimation();
     }
 }
-
-

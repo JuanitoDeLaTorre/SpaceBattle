@@ -242,6 +242,7 @@ h4 {
     right: -50%;
     border-radius: 100%;
     box-shadow: 0px 0px 20px rgb(248, 247, 181);
+    cursor: pointer;
 }
 
 .timer::after {
@@ -384,8 +385,8 @@ h4 {
     opacity: 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 100px;
+    justify-content: center;
+    gap: 70px;
     transition: all 700ms ease-in-out;
     transform: translateY(60px);
 }
@@ -418,20 +419,27 @@ h4 {
 
 .testBlocks:hover {
     /* transform: scale(105%); */
-    box-shadow: 0px 0px 15px white;
+    box-shadow: 0px 0px 30px white;
 }
 
 .testBlocks:nth-child(1):hover {
     border: solid rgb(0, 155, 88) 3px;
-    color:rgb(0, 155, 88)
+    color:rgb(0, 155, 88);
+    animation: pulse 1s linear infinite;
 }
 
 .testBlocks:nth-child(2):hover {
     border: solid rgb(0, 101, 155) 3px;
+    color:rgb(0, 101, 155);
+    animation: pulse 1s linear infinite;
+
 }
 
 .testBlocks:nth-child(3):hover {
     border: solid rgb(126, 1, 1) 3px;
+    color:rgb(126, 1, 1);
+    animation: pulse 1s linear infinite;
+
 }
 
 .testBlocks:nth-child(1) > h4{
@@ -458,6 +466,12 @@ h4 {
 .testBlocks > ul > li {
     height: 0px;
     width: auto;
+}
+
+@keyframes pulse {
+    0%{box-shadow: 0px 0px 30px white}
+    50%{box-shadow: 0px 0px 15px white}
+    100%{box-shadow: 0px 0px 30px white}
 }
 
 
