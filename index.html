@@ -10,6 +10,41 @@
     
 </head>
 <body>
+    <div class="startMessage">
+        <!-- <span></span> -->
+        <header class = "header">
+            <h1>WELCOME TO THE SPACE GAME</h1>
+            <h4>The fate of the earth rests in your hands.</h4>
+            <h4>- - - [CHOOSE YOUR DIFFICULTY] - - -</h4>
+            
+        </header>
+        <section class = options>
+            <div class="testBlocks" id = "chillBlock">
+                <h3>- LEVEL 1 -</h3>
+                <h4>C H I L L</h4>
+                <ul>
+                    <li>Fun GIFs: On</li>
+                    <li>Alien Health: Low</li>
+                    <li>Attack Damage: High</li>
+                    <li>No timer</li>
+                </ul>
+            </div>
+            <div class="testBlocks" id = "classicBlock">
+                <h3>- LEVEL 2 -</h3>
+                <h4>CLASSIC</h4>
+            </div>
+            <div class="testBlocks" id = "challengeBlock">
+                <h3>- LEVEL 3 -</h3>
+                <h4>CHALLENGING</h4>
+                
+                
+            </div>
+            
+
+        </section>
+        <img src="./Resources/Pexels-Videos-2421545 (1).gif" alt="" id = "startGIF">
+        
+    </div>
     <img src="./Resources/schwartz.gif" class = "schwartz" alt="">
     <img src="./Resources/bye2.gif" class = "bye" alt="">
     <img src="./Resources/game-over-glitch.gif" class = "gameOver" alt="">
@@ -22,13 +57,15 @@
         <label for="GIF">GIF's on</label>
         <input type="checkbox" name="GIF" id="gifCheck">
     </div>
+
+
     
     
     
 
     
 
-    <div class="explanation">
+    <!-- <div class="explanation">
         <h4>Welcome to the galaxy space attack game!</h4>
         <p>Each round will go like this:</p>
         <ol>
@@ -37,7 +74,7 @@
             <li>If you destroy the ship, you have the option to retreat</li>
             <li>Keep attacking until you've destroyed the ships or want to retreat!</li>
         </ol>
-    </div>
+    </div> -->
 
 
     <h4>- - - [ YOUR HEALTH ] - - -</h4>
@@ -58,6 +95,7 @@
             <li class = "selfMiss">YOU MISSED</li>
         </ul>
     </div>
+    <!-- <img src="./Resources/boom.gif" alt=""> -->
 
     <hr>
     
@@ -99,7 +137,10 @@
     </div>
     <div class="messageBoard">
         <h2 id = "message">SHIP DESTROYED!</h2>
+        
+
     </div>
+    <h4>SHIPS DESTROYED: <span class = "shipsDestroyed">0</span></h4>
     
     
     <br><br><br><br><br><br><br><br><br><br><br><br>

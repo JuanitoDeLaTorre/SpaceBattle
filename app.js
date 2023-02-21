@@ -11,11 +11,22 @@ const selfHit = document.querySelector(".selfHit")
 const alienHit = document.querySelector(".alienHit")
 const selfMiss = document.querySelector(".selfMiss")
 const alienMiss = document.querySelector(".alienMiss")
+const shipsDestroyedDOM = document.querySelector(".shipsDestroyed")
 const timer = document.querySelector(".timer")
 const slider = document.querySelector("#slider")
 const gifCheck = document.querySelector("#gifCheck")
 const message = document.querySelector("#message")
 const messageBoard = document.querySelector(".messageBoard")
+const startMessage = document.querySelector(".startMessage")
+const startGIF = document.querySelector("#startGIF")
+const header = document.querySelector(".header")
+const options = document.querySelector(".options")
+
+const chill = document.querySelector("#chillBlock")
+const classic = document.querySelector("#classicBlock")
+const challenge = document.querySelector("#challengeBlock")
+
+let shipsDestroyed = 0;
 
 
 const alienHull1 = document.querySelector("#Hull1")
@@ -32,6 +43,31 @@ gifCheck.addEventListener('change', function() {
       console.log("Checkbox is not checked..");
     }
   });
+
+  startMessage.style.opacity = "1"
+
+header.addEventListener("mouseover", ()=>{
+    // header.classList.add("expanded")
+    header.style.transform = "translateY(-100px)"
+    options.style.opacity = "1"
+    options.style.gap = "150px"
+    options.style.transform = "translateY(0)"
+})
+
+chill.addEventListener("click",()=> {
+    console.log("CHILL SELECTED")
+    startMessage.style.display = "none"
+})
+
+classic.addEventListener("click",()=> {
+    console.log("CLASSIC SELECTED")
+    startMessage.style.display = "none"
+})
+
+challenge.addEventListener("click",()=> {
+    console.log("CHALLENGE SELECTED")
+    startMessage.style.display = "none"
+})
 
 
 
@@ -400,7 +436,9 @@ function updateAlienHull (shipID) {
 
 function showShipDestroyMessage(shipNum) {
     messageBoard.style.opacity = "1"
-    message.innerText = `You've destroyed ship #${shipNum}! Press escape to retreat or keep firing!`
+    message.innerText = `You've destroyed ship #${shipNum}! Press 'escape' to retreat or keep firing!`
+    shipsDestroyed++
+    shipsDestroyedDOM.innerText = shipsDestroyed
     setTimeout(()=> {
         messageBoard.style.opacity = "0"
     },6000)
@@ -457,6 +495,7 @@ function retreatAnimation () {
     bye.style.opacity = "1"
     bye.style.top = "0%"
     bye.style.height = "80vh"
+    bye.style.transform = "translateY(0)"
 }
 
 //UPDATE USER HULL IN OBJECT AND DOM
@@ -482,7 +521,7 @@ function handleAttack() {
     if(currentAlienShip === 6) {
         victory.style.display = "block"
     }
-    explanation.style.opacity = "0"
+    // explanation.style.opacity = "0"
     updateAlienHull(currentAlienShip);
 }
 
@@ -553,4 +592,11 @@ function changeTimer() {
     startTime = slider.value
     timer.innerText = slider.value
 }
+
+document.onkeydown = (e) => {
+    if(e.key === "Escape") {
+        retreatAnimation();
+    }
+}
+
 
