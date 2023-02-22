@@ -21,7 +21,11 @@ const startGIF = document.querySelector("#startGIF")
 const header = document.querySelector(".header")
 const options = document.querySelector(".options")
 let lofi = new Audio("Resources/yt5s.io - mechanical Ivy (128 kbps).mp3")
-const pause = document.querySelector(".pause")
+const music = document.querySelector(".musicControl")
+const dizzy = document.querySelector("#dizzy")
+
+let playSymbol = "https://cdn-icons-png.flaticon.com/512/6878/6878705.png"
+let pauseSymbol = "https://cdn-icons-png.flaticon.com/512/6878/6878704.png"
 
 const chill = document.querySelector("#chillBlock")
 const classic = document.querySelector("#classicBlock")
@@ -47,13 +51,13 @@ chill.addEventListener("click",()=> {
     gameType = "chill"
 
     aliens.forEach(ship => {
-        setParams(20,[3,5],1,ship,[4,7],[2,3],[0.6,0.8])
+        setParams(20,[3,5],1,ship,[4,7],[2,3],[0.6,0.7])
     })
     gifs = true;
     console.log(aliens)
     lofi.play()
     lofi.volume = 0.1;
-    pause.classList.add("playing");
+    // pause.classList.add("playing");
 })
 
 classic.addEventListener("click",()=> {
@@ -62,10 +66,13 @@ classic.addEventListener("click",()=> {
     gameType = "classic"
 
     aliens.forEach(ship => {
-        setParams(20,[2,4],0.8,ship,[5,9],[3,4],[0.65,0.8])
+        setParams(20,[2,4],0.8,ship,[5,9],[3,4],[0.65,0.75])
     })
+
+    timer.style.opacity = 1;
+    slider.style.opacity = 1;
+
     gifs = true;
-    console.log(aliens)
 
 })
 
@@ -75,24 +82,37 @@ challenge.addEventListener("click",()=> {
     gameType = "challenge"
 
     aliens.forEach(ship => {
-        setParams(15,[2,4],0.6,ship,[7,11],[3,6],[0.7,0.85])
+        setParams(15,[2,4],0.8,ship,[7,11],[3,6],[0.65,0.75])
     })
+
+    timer.style.opacity = 1;
+    slider.style.opacity = 1;
+
     gifs = false;
-    console.log(aliens) 
 
 })
 
-pause.addEventListener("click",() => {
-    if(pause.classList.contains("playing")){
-        pause.innerText = "Play Music"
-        pause.classList.remove("playing")
-        lofi.pause()
-    } else {
-        pause.innerText = "Pause Music"
-        pause.classList.add("playing")
-        lofi.play()
-    }
+// pause.addEventListener("click",() => {
+//     if(pause.classList.contains("playing")){
+//         pause.innerText = "Play Music"
+//         pause.classList.remove("playing")
+//         lofi.pause()
+//     } else {
+//         pause.innerText = "Pause Music"
+//         pause.classList.add("playing")
+//         lofi.play()
+//     }
     
+// })
+
+music.addEventListener("click",()=> {
+    if(music.src === playSymbol){
+        music.src = pauseSymbol;
+        lofi.play()
+    } else if(music.src === pauseSymbol){
+        music.src = playSymbol;
+        lofi.pause()
+    }
 })
 
 
@@ -227,7 +247,7 @@ let retreat = "";
 
 //MAIN ACTION FUNCTION (Comments made only on first ship - all six are identical)
 
-function updateAlienHull (shipID) {
+function updateShipHulls (shipID) {
 
     //CHECK VICTORY
     if(currentAlienShip === 6) {
@@ -275,7 +295,7 @@ function updateAlienHull (shipID) {
             if(alienShip1.accuracy > Math.random()) {
                 setTimeout(() => {
                     updateHull(alienShip1.firepower);
-                },1000)
+                },500)
                 showHit("self");
                 console.log("ALIEN HIT! You took " + alienShip1.firepower + " damage!")
 
@@ -317,7 +337,7 @@ function updateAlienHull (shipID) {
             if(alienShip2.accuracy > Math.random()) {
                 setTimeout(() => {
                     updateHull(alienShip2.firepower);
-                },1000)
+                },500)
                 showHit("self");
                 console.log("ALIEN HIT! You took " + alienShip2.firepower + " damage!")
 
@@ -358,7 +378,7 @@ function updateAlienHull (shipID) {
             if(alienShip3.accuracy > Math.random()) {
                 setTimeout(() => {
                     updateHull(alienShip3.firepower);
-                },1000)
+                },500)
                 showHit("self");
                 console.log("ALIEN HIT! You took " + alienShip3.firepower + " damage!")
 
@@ -399,7 +419,7 @@ function updateAlienHull (shipID) {
             if(alienShip4.accuracy > Math.random()) {
                 setTimeout(() => {
                     updateHull(alienShip4.firepower);
-                },1000)
+                },500)
                 showHit("self");
                 console.log("ALIEN HIT! You took " + alienShip4.firepower + " damage!")
 
@@ -440,7 +460,7 @@ function updateAlienHull (shipID) {
             if(alienShip5.accuracy > Math.random()) {
                 setTimeout(() => {
                     updateHull(alienShip5.firepower);
-                },1000)
+                },500)
                 showHit("self");
                 console.log("ALIEN HIT! You took " + alienShip5.firepower + " damage!")
 
@@ -481,7 +501,7 @@ function updateAlienHull (shipID) {
             if(alienShip6.accuracy > Math.random()) {
                 setTimeout(() => {
                     updateHull(alienShip6.firepower);
-                },1000)
+                },500)
                 showHit("self");
                 console.log("ALIEN HIT! You took " + alienShip6.firepower + " damage!")
 
@@ -493,6 +513,65 @@ function updateAlienHull (shipID) {
     }
    
 }
+
+
+//--------------------------------------------------------------------------------
+// function updateShipHulls(shipID){
+
+//     if(currentAlienShip === 6) {
+//         victory.style.display = "block"
+//         return console.log("You won!");
+//     }
+
+//     //ASSIGN DAMAGE VALUE
+
+//     let hit = ship.firepower;
+//     for(let i = 0; i < aliens.length; i++) {
+//         if((i + 1)=== shipID){
+//             if(ship.accuracy > Math.random()) {
+//                 alienShip6.hull -= hit;
+//                 showHit("alien");
+//                 console.log("DIRECT HIT!")
+                
+//             } else {
+//                 showMiss("self")
+//                 console.log("YOU MISSED! REGROUP!")
+//             }
+            
+//             if(alienShip6.hull <= 0) {
+//                 alienShip6.dead = true;
+//                 alienHull6.style.fontSize = "18px"
+//                 alienHull6.innerText = "DESTROYED!"
+//                 console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
+//                 showShipDestroyMessage(6);
+    
+    
+//                 if(retreat === "y") {
+//                     retreatAnimation();
+//                     return;
+//                 }
+//                 shipDown();
+//                 currentAlienShip++
+    
+//             } else {
+//                 alienHull6.innerText = alienShip6.hull;
+//                 if(alienShip6.accuracy > Math.random()) {
+//                     setTimeout(() => {
+//                         updateHull(alienShip6.firepower);
+//                     },500)
+//                     showHit("self");
+//                     console.log("ALIEN HIT! You took " + alienShip6.firepower + " damage!")
+    
+//                 } else {
+                    
+//                     console.log("ALIEN MISS!")
+//                 }
+//             }
+//         }
+//     }
+// }
+//--------------------------------------------------------------------------------
+
 
 //DISPLAY DOWNED SHIP MESSAGE
 
@@ -563,15 +642,23 @@ function retreatAnimation () {
 //UPDATE USER HULL IN OBJECT AND DOM
 
 function updateHull (firepower) {
+    if(gameType === "challenge") {
+        dizzy.style.display = "block"
+        setTimeout(()=> {
+            dizzy.style.display = "none"
+            console.log("TIMEOUT BABY BOI")
+        },2000)
+        
+    }
     ship.hull -= firepower;
     
     userHealth.innerText = ship.hull;
-    setTimeout(() => {
-        if(ship.hull <= 0) {
-            userHealth.innerText = 0;
+    if(ship.hull <= 0 && gameType === "challenge"){
+        setTimeout(()=> {
             over.style.display = "block"
-        }
-    },2000)
+        },2000)
+    }
+    
     
 }
 
@@ -580,38 +667,17 @@ function updateHull (firepower) {
 attack.addEventListener("click", handleAttack)
 
 function handleAttack() {
+    console.log("OK?")
     if(currentAlienShip === 6) {
         victory.style.display = "block"
     }
     // explanation.style.opacity = "0"
-    updateAlienHull(currentAlienShip);
+    updateShipHulls(currentAlienShip);
 }
 
 let startTime = 40
 timer.innerText = startTime;
 
-// timer.addEventListener("click",()=> {
-//     if(timer.classList.contains("running")){
-//         timer.classList.remove("running")
-//         timer.innerHTML = startTime;
-//         clearInterval(set)
-//         console.log("I should stop!")
-//     } else {
-//         timer.classList.add("running")
-//         let set = setInterval(()=> {
-//             if(startTime === 0){
-//                 clearInterval(set);
-//                 alert("TIME'S UP")
-//             } else {
-//                 startTime--
-//                 timer.innerText = startTime;
-//             }
-            
-//         },1000)
-//     }
-    
-    
-// })
 
 timer.addEventListener("click",startTimer)
 
@@ -623,7 +689,10 @@ function startTimer() {
         let set = setInterval(()=> {
             if(startTime === 0){
                 clearInterval(set);
-                alert("TIME'S UP")
+            } else if (startTime <= 11 && startTime >=7){
+                timer.style.color = "orange"
+                startTime--
+                timer.innerText = startTime;
             } else if (startTime <= 6){
                 timer.style.color = "red"
                 startTime--

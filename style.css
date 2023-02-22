@@ -1,15 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Tourney:wght@300&display=swap');
 
 body {
     background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(20,27,56,1) 50%, rgba(0,0,0,1) 100%);
-    ;
     width: 30vw;
     margin: 5% auto 30% auto;
     height: 50vh;
     font-family: "Orbitron";
     color: white;
     position: relative;
+    z-index: 0;
+}
+
+body::after {
+    opacity: 0.5;
+    background: url("./Resources/Star_Trip.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 200%;
+    z-index: 1;
 }
 
 p {
@@ -157,7 +167,7 @@ h4 {
     position: absolute;
     content: "";
     left: -300px;
-    top: 260px;
+    top: 210px;
     height: 75px;
     width: 1000px;
 }
@@ -231,6 +241,7 @@ h4 {
 }
 
 .timer {
+    opacity: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -243,6 +254,7 @@ h4 {
     border-radius: 100%;
     box-shadow: 0px 0px 20px rgb(248, 247, 181);
     cursor: pointer;
+    transition: color 200ms ease-in;
 }
 
 .timer::after {
@@ -267,9 +279,10 @@ h4 {
     border-radius: 10px;  
     background: #ffffff;
     outline: none;
-    opacity: 0.7;
+    opacity: 0;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    
   }
   
   #slider::-webkit-slider-thumb {
@@ -316,7 +329,7 @@ h4 {
 .startMessage {
     opacity: 0;
     position: absolute;
-    height: 700px;
+    height: 750px;
     width: 1300px;
     left: -85%;
     background-color: rgb(0, 0, 0);
@@ -446,6 +459,30 @@ h4 {
     font-family: "Bebas Neue";
 }
 
+.testBlocks:nth-child(2) > h4{
+    font-family: "Righteous";
+}
+
+.testBlocks:nth-child(3) > h4{
+    font-family: "Tourney";
+}
+
+.testBlocks:nth-child(1) > h3{
+    
+    color:rgb(0, 155, 88);
+}
+
+.testBlocks:nth-child(2) > h3{
+    
+    color:rgb(0, 101, 155);
+    }
+
+.testBlocks:nth-child(3) > h3{
+    
+
+    color:rgb(126, 1, 1);
+}
+
 .testBlocks > ul {
     text-align: left;
     gap: 25px;
@@ -474,4 +511,38 @@ h4 {
     100%{box-shadow: 0px 0px 30px white}
 }
 
+.musicControl {
+    cursor: pointer;
+    height: 30px;
+    width: auto;
+}
 
+label {
+    font-size: 0.75em;
+}
+
+.musicBlock{
+    position: absolute;
+    right: -50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#dizzy {
+    display: none;
+    position: absolute;
+    left: 35%;
+    top: 19%;
+    height: 150px;
+    width: auto;
+    animation: rotate 2s linear infinite;
+    z-index: 100;
+}
+
+@keyframes rotate {
+    0%{transform: rotate(0deg)}
+    100%{transform: rotate(360deg);}
+}
