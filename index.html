@@ -19,7 +19,7 @@
             
         </header>
         <section class = options>
-            <div class="testBlocks" id = "chillBlock">
+            <div class="testBlocks" >
                 <h3>- LEVEL 1 -</h3>
                 <h4>C  H   I   L  L</h4>
                 <ul>
@@ -28,9 +28,11 @@
                     <li>Attack Damage: High</li>
                     <li>Guaranteed Hits</li>
                     <li>No timer</li>
+                    <div class="startGame" id = "chillBlock">START GAME</div>
                 </ul>
+                
             </div>
-            <div class="testBlocks" id = "classicBlock">
+            <div class="testBlocks" >
                 <h3>- LEVEL 2 -</h3>
                 <h4>CLASSIC</h4>
                 <ul>
@@ -38,9 +40,12 @@
                     <li>Alien Health: Medium</li>
                     <li>Attack Damage: Medium</li>
                     <li>No timer</li>
+                    <div class="startGame" id = "classicBlock">START GAME</div>
+
                 </ul>
+                
             </div>
-            <div class="testBlocks" id = "challengeBlock">
+            <div class="testBlocks" >
                 <h3>- LEVEL 3 -</h3>
                 <h4>CHALLENGING</h4>
                 <ul>
@@ -50,6 +55,14 @@
                     <li>Attack Damage: Medium</li>
                     <li>Timer On</li>
                 </ul>
+                
+                <div class="circles">4</div>
+                <div class="circles">5</div>
+                <div class="circles">6</div>
+
+                <div class="startGame" id = "challengeBlock">START GAME</div>
+
+                
                 
             </div>
             
@@ -118,32 +131,32 @@
     </div>
     <div class="aliens">
         <ul>
-            <li>
+            <li class = "li1"> 
                 <img src = "./Resources/ufo.png" class = "ship"></img>
                 <p id = "Hull1"></p>
 
             </li>
-            <li>
+            <li class = "li2">
                 <img src = "./Resources/ufo.png" class = "ship"></img>
                 <p id = "Hull2"></p>
 
             </li>
-            <li>
+            <li class = "li3">
                 <img src = "./Resources/ufo.png" class = "ship"></img>
                 <p id = "Hull3"></p>
 
             </li>
-            <li>
+            <li class = "li4">
                 <img src = "./Resources/ufo.png" class = "ship"></img>
                 <p id = "Hull4"></p>
 
             </li>
-            <li>
+            <li class = "li5">
                 <img src = "./Resources/ufo.png" class = "ship"></img>
                 <p id = "Hull5"></p>
 
             </li>
-            <li>
+            <li class = "li6">
                 <img src = "./Resources/ufo.png" class = "ship"></img>
                 <p id = "Hull6"></p>
 
@@ -156,6 +169,7 @@
 
     </div>
     <h4>SHIPS DESTROYED: <span class = "shipsDestroyed">0</span></h4>
+    <h4>DAMAGE DEALT: <span class = "damageDealt">0</span></h4>
     
     
     <br><br><br><br><br><br><br><br><br><br><br><br>

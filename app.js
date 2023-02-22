@@ -12,6 +12,7 @@ const alienHit = document.querySelector(".alienHit")
 const selfMiss = document.querySelector(".selfMiss")
 const alienMiss = document.querySelector(".alienMiss")
 const shipsDestroyedDOM = document.querySelector(".shipsDestroyed")
+const damageDealtDOM = document.querySelector(".damageDealt")
 const timer = document.querySelector(".timer")
 const slider = document.querySelector("#slider")
 const message = document.querySelector("#message")
@@ -31,6 +32,8 @@ const chill = document.querySelector("#chillBlock")
 const classic = document.querySelector("#classicBlock")
 const challenge = document.querySelector("#challengeBlock")
 
+
+let damageDealt = 0;
 let shipsDestroyed = 0;
 let gameType = "none";
 let gifs = false;
@@ -42,6 +45,13 @@ const alienHull3 = document.querySelector("#Hull3")
 const alienHull4 = document.querySelector("#Hull4")
 const alienHull5 = document.querySelector("#Hull5")
 const alienHull6 = document.querySelector("#Hull6")
+
+const li1 = document.querySelector(".li1")
+const li2 = document.querySelector(".li2")
+const li3 = document.querySelector(".li3")
+const li4 = document.querySelector(".li4")
+const li5 = document.querySelector(".li5")
+const li6 = document.querySelector(".li6")
 
 //START MESSAGE EVENT LISTENERS
 
@@ -66,7 +76,7 @@ classic.addEventListener("click",()=> {
     gameType = "classic"
 
     aliens.forEach(ship => {
-        setParams(20,[2,4],0.8,ship,[5,9],[3,4],[0.65,0.75])
+        setParams(20,[3,4],0.8,ship,[5,9],[3,4],[0.65,0.75])
     })
 
     timer.style.opacity = 1;
@@ -249,6 +259,9 @@ let retreat = "";
 
 function updateShipHulls (shipID) {
 
+
+    
+
     //CHECK VICTORY
     if(currentAlienShip === 6) {
         victory.style.display = "block"
@@ -264,9 +277,11 @@ function updateShipHulls (shipID) {
         //SELF ACCURACY CHECK
 
         if(ship.accuracy > Math.random()) {
+            damageDealt += ship.firepower;
             alienShip1.hull -= hit;
             showHit("alien");
             console.log("DIRECT HIT!")
+            
             
         } else {
             showMiss("self")
@@ -282,11 +297,6 @@ function updateShipHulls (shipID) {
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(1)
             // retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
-
-            if(retreat === "y") {
-                retreatAnimation();
-                return;
-            }
             shipDown();
             currentAlienShip++
 
@@ -308,6 +318,7 @@ function updateShipHulls (shipID) {
         // *********** SHIP 2 **********
     } else if ((shipID + 1) === 2) {
         if(ship.accuracy > Math.random()) {
+            damageDealt += ship.firepower;
             alienShip2.hull -= hit;
             showHit("alien");
             console.log("DIRECT HIT!")
@@ -324,11 +335,6 @@ function updateShipHulls (shipID) {
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(2);
 
-
-            if(retreat === "y") {
-                retreatAnimation();
-                return;
-            }
             shipDown();
             currentAlienShip++
 
@@ -349,6 +355,7 @@ function updateShipHulls (shipID) {
         // *********** SHIP 3 **********
     } else if ((shipID + 1) === 3) {
         if(ship.accuracy > Math.random()) {
+            damageDealt += ship.firepower;
             alienShip3.hull -= hit;
             showHit("alien");
             console.log("DIRECT HIT!")
@@ -365,11 +372,6 @@ function updateShipHulls (shipID) {
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(3);
 
-
-            if(retreat === "y") {
-                retreatAnimation();
-                return;
-            }
             shipDown();
             currentAlienShip++
 
@@ -390,6 +392,7 @@ function updateShipHulls (shipID) {
         // *********** SHIP 4 **********
     } else if ((shipID+ 1) === 4) {
         if(ship.accuracy > Math.random()) {
+            damageDealt += ship.firepower;
             alienShip4.hull -= hit;
             showHit("alien");
             console.log("DIRECT HIT!")
@@ -406,11 +409,6 @@ function updateShipHulls (shipID) {
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(4);
 
-
-            if(retreat === "y") {
-                retreatAnimation();
-                return;
-            }
             shipDown();
             currentAlienShip++
 
@@ -430,7 +428,9 @@ function updateShipHulls (shipID) {
 
         // *********** SHIP 5 **********
     } else if ((shipID + 1) === 5) {
+        
         if(ship.accuracy > Math.random()) {
+            damageDealt += ship.firepower;
             alienShip5.hull -= hit;
             showHit("alien");
             console.log("DIRECT HIT!")
@@ -447,11 +447,6 @@ function updateShipHulls (shipID) {
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(5);
 
-
-            if(retreat === "y") {
-                retreatAnimation();
-                return;
-            }
             shipDown();
             currentAlienShip++
 
@@ -472,6 +467,7 @@ function updateShipHulls (shipID) {
         // *********** SHIP 6 **********
     } else if ((shipID + 1) === 6) {
         if(ship.accuracy > Math.random()) {
+            damageDealt += ship.firepower;
             alienShip6.hull -= hit;
             showHit("alien");
             console.log("DIRECT HIT!")
@@ -488,11 +484,6 @@ function updateShipHulls (shipID) {
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(6);
 
-
-            if(retreat === "y") {
-                retreatAnimation();
-                return;
-            }
             shipDown();
             currentAlienShip++
 
@@ -511,7 +502,10 @@ function updateShipHulls (shipID) {
             }
         }
     }
-   
+
+   //update DamageDealt
+   damageDealtDOM.innerText = damageDealt;
+
 }
 
 
@@ -662,13 +656,17 @@ function updateHull (firepower) {
     
 }
 
+li4.style.display = "none"
+li5.style.display = "none"
+li6.style.display = "none"
+
 //POINTLESS EVENT LISTENER/FUNCTION COMBO BECAUSE IT BREAKS IF I TRY ANYTHING ELSE
 
 attack.addEventListener("click", handleAttack)
 
 function handleAttack() {
     console.log("OK?")
-    if(currentAlienShip === 6) {
+    if(currentAlienShip === 3) {
         victory.style.display = "block"
     }
     // explanation.style.opacity = "0"
