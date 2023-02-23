@@ -113,6 +113,7 @@ h4 {
 }
 
 .explanation {
+    display: none;
     text-align: left;
     position: absolute;
     width: 500px;
@@ -245,6 +246,15 @@ h4 {
     top: -20%;
     box-shadow: 0px 0px 30px white;
     z-index: 100;
+}
+
+.timeout {
+    position: absolute;
+    display: none;
+    height: 70vh;
+    width: auto;
+    right: -70%;
+    top: -20%;
 }
 
 .timer {
@@ -576,7 +586,7 @@ label {
     color: white;
     border: solid red 1px;
     padding: 8px;
-    padding-top: 10px;
+    padding-top: 12px;
     transition: all 200ms ease-in-out;
     margin-bottom: 0px;
 }
@@ -619,4 +629,32 @@ label {
     margin-left: 81px;
     margin-top: 30px;
     
+}
+
+.explanation2 {
+    display: none;
+    text-align: left;
+    position: absolute;
+    width: 500px;
+    height: auto;
+    padding-top: 5px;
+    left: -100%;
+    top: -15%;
+    font-size: 0.75em;
+    border: solid red 3px;
+    transition: all 1000ms ease-out;
+}
+
+.explanation3 {
+    display: none;
+    text-align: left;
+    position: absolute;
+    width: 500px;
+    height: auto;
+    padding-top: 5px;
+    left: -100%;
+    top: -15%;
+    font-size: 0.75em;
+    border: solid red 3px;
+    transition: all 1000ms ease-out;
 }

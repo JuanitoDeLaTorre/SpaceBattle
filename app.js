@@ -6,7 +6,11 @@ const schwartz = document.querySelector(".schwartz")
 const bye = document.querySelector(".bye")
 const over = document.querySelector(".gameOver")
 const victory = document.querySelector(".victory")
+const timeout = document.querySelector(".timeout")
 const explanation = document.querySelector(".explanation")
+const explanation2 = document.querySelector(".explanation2")
+const explanation3 = document.querySelector(".explanation3")
+
 const selfHit = document.querySelector(".selfHit")
 const alienHit = document.querySelector(".alienHit")
 const selfMiss = document.querySelector(".selfMiss")
@@ -25,6 +29,28 @@ let lofi = new Audio("Resources/yt5s.io - mechanical Ivy (128 kbps).mp3")
 const music = document.querySelector(".musicControl")
 const dizzy = document.querySelector("#dizzy")
 
+function query(id) {
+    if(NodeList.prototype.isPrototypeOf(document.querySelectorAll(id))){
+        return document.querySelectorAll(id)
+    } else {
+        return document.querySelector(id)
+    }
+}
+const circles = query(".circles")
+console.log(circles)
+
+let shipSelection = 6
+
+circles.forEach((circle)=>{
+    circle.addEventListener("click",()=>{
+        circle.style.border = "solid white 3px"
+        shipSelection = circle.innerText
+        console.log(shipSelection)
+    }
+    )
+})
+
+
 let playSymbol = "https://cdn-icons-png.flaticon.com/512/6878/6878705.png"
 let pauseSymbol = "https://cdn-icons-png.flaticon.com/512/6878/6878704.png"
 
@@ -34,6 +60,7 @@ const challenge = document.querySelector("#challengeBlock")
 
 
 let damageDealt = 0;
+let damageTaken = 0;
 let shipsDestroyed = 0;
 let gameType = "none";
 let gifs = false;
@@ -78,10 +105,7 @@ classic.addEventListener("click",()=> {
     aliens.forEach(ship => {
         setParams(20,[3,4],0.8,ship,[5,9],[3,4],[0.65,0.75])
     })
-
-    timer.style.opacity = 1;
-    slider.style.opacity = 1;
-
+    explanation2.style.display = "block"
     gifs = true;
 
 })
@@ -95,6 +119,7 @@ challenge.addEventListener("click",()=> {
         setParams(15,[2,4],0.8,ship,[7,11],[3,6],[0.65,0.75])
     })
 
+    explanation3.style.display = "block"
     timer.style.opacity = 1;
     slider.style.opacity = 1;
 
@@ -259,9 +284,6 @@ let retreat = "";
 
 function updateShipHulls (shipID) {
 
-
-    
-
     //CHECK VICTORY
     if(currentAlienShip === 6) {
         victory.style.display = "block"
@@ -307,6 +329,8 @@ function updateShipHulls (shipID) {
                     updateHull(alienShip1.firepower);
                 },500)
                 showHit("self");
+                damageTaken += alienShip1.firepower;
+                console.log(damageTaken)
                 console.log("ALIEN HIT! You took " + alienShip1.firepower + " damage!")
 
             } else {
@@ -345,6 +369,8 @@ function updateShipHulls (shipID) {
                     updateHull(alienShip2.firepower);
                 },500)
                 showHit("self");
+                damageTaken += alienShip2.firepower;
+
                 console.log("ALIEN HIT! You took " + alienShip2.firepower + " damage!")
 
             } else {
@@ -382,6 +408,8 @@ function updateShipHulls (shipID) {
                     updateHull(alienShip3.firepower);
                 },500)
                 showHit("self");
+                damageTaken += alienShip3.firepower;
+
                 console.log("ALIEN HIT! You took " + alienShip3.firepower + " damage!")
 
             } else {
@@ -419,6 +447,8 @@ function updateShipHulls (shipID) {
                     updateHull(alienShip4.firepower);
                 },500)
                 showHit("self");
+                damageTaken += alienShip4.firepower;
+
                 console.log("ALIEN HIT! You took " + alienShip4.firepower + " damage!")
 
             } else {
@@ -457,6 +487,8 @@ function updateShipHulls (shipID) {
                     updateHull(alienShip5.firepower);
                 },500)
                 showHit("self");
+                damageTaken += alienShip5.firepower;
+
                 console.log("ALIEN HIT! You took " + alienShip5.firepower + " damage!")
 
             } else {
@@ -494,6 +526,8 @@ function updateShipHulls (shipID) {
                     updateHull(alienShip6.firepower);
                 },500)
                 showHit("self");
+                damageTaken += alienShip6.firepower;
+
                 console.log("ALIEN HIT! You took " + alienShip6.firepower + " damage!")
 
             } else {
@@ -627,7 +661,7 @@ function shipDown() {
 //DISPLAY RETREAT GIF
 
 function retreatAnimation () {
-    bye.style.opacity = "1"
+    bye.style.opacity = "0.1"
     bye.style.top = "0%"
     bye.style.height = "80vh"
     bye.style.transform = "translateY(0)"
@@ -648,28 +682,42 @@ function updateHull (firepower) {
     
     userHealth.innerText = ship.hull;
     if(ship.hull <= 0 && gameType === "challenge"){
+        timeout.style.display = "block"
         setTimeout(()=> {
-            over.style.display = "block"
-        },2000)
+            timeout.style.display = "none"
+        },4500)
     }
     
     
 }
 
+if(gameType === "challenge"){
+    if(shipSelection === 4) {
+        li5.style.display = "none"
+        li6.style.display = "none"
+    }
+}
 li4.style.display = "none"
-li5.style.display = "none"
-li6.style.display = "none"
+
 
 //POINTLESS EVENT LISTENER/FUNCTION COMBO BECAUSE IT BREAKS IF I TRY ANYTHING ELSE
 
 attack.addEventListener("click", handleAttack)
 
 function handleAttack() {
-    console.log("OK?")
-    if(currentAlienShip === 3) {
+
+    if(currentAlienShip === shipSelection) {
         victory.style.display = "block"
     }
-    // explanation.style.opacity = "0"
+
+    explanation.style.opacity = "0"
+    explanation2.style.opacity = "0"
+    explanation3.style.opacity = "0"
+
+    // explanation.style.display = "none"
+    // explanation2.style.display = "none"
+    // explanation3.style.display = "none"
+
     updateShipHulls(currentAlienShip);
 }
 
@@ -724,6 +772,8 @@ function changeTimer() {
 
 document.onkeydown = (e) => {
     if(e.key === "Escape") {
+        ship.hull += 10
+        userHealth.innerText = ship.hull;
         retreatAnimation();
     }
 }
