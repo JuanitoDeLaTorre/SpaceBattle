@@ -13,13 +13,25 @@ body {
     z-index: 0;
 }
 
-body::after {
+/* body::after {
     opacity: 0.5;
     background: url("./Resources/Star_Trip.gif");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 200%;
     z-index: 1;
+} */
+
+.bodyWrap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url("./Resources/Star_Trip.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(350%);
+    opacity: 0.3;
+    z-index: 0;
 }
 
 p {
@@ -29,10 +41,13 @@ p {
 .attack {
     text-align: center;
     cursor: grab;
+    
 }
 
 .battleStation {
+    position: relative;
     margin-bottom: 40px;
+    z-index: 2;
 }
 
 .aliens {
@@ -49,6 +64,7 @@ p {
     justify-content: center;
     list-style-type: none;
     gap: 50px;
+    filter: blur(50%)
 }
 
 .messages ul {
@@ -596,9 +612,6 @@ label {
     box-shadow: 0px 0px 10px white;
 }
 
-.circles:focus{
-    border: solid white 3px;
-}
 
 .testBlocks:nth-child(3):hover > .circles {
     display: inline-block;
@@ -657,4 +670,46 @@ label {
     font-size: 0.75em;
     border: solid red 3px;
     transition: all 1000ms ease-out;
+}
+
+.boom {
+    display: none;
+    position: absolute;
+    left: 20%;
+    transform: scale(350%);
+}
+
+.li1, .li2, .li3, .li4, .li5, .li6 {
+    position: relative;
+    transform: scale(120%);
+}
+
+#difficulty {
+    opacity: 0;
+    transition: all 200ms ease-in;
+}
+
+.shipStats {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    content: '';
+    position: absolute;
+    left: 70%;
+    top: 15%;
+    height: auto;
+    width: 300px;
+    background-color: transparent;
+    border-radius: 30px;
+    border: solid red 2px;
+    transform: scale(70%);
+    box-shadow: 0px 0px 15px red;
+}
+
+.shipStats > ul > li {
+    height: auto;
+}
+
+.shipStats > hr {
+    width: 90%;
 }

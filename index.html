@@ -10,194 +10,210 @@
     
 </head>
 <body>
-    <div class="startMessage">
-        <!-- <span></span> -->
-        <header class = "header">
-            <h1>WELCOME TO THE SPACE GAME</h1>
-            <h4>The fate of the earth rests in your hands.</h4>
-            <h4>- - - [CHOOSE YOUR DIFFICULTY] - - -</h4>
+    <div class="bodyWrap"></div>
+        <div class="startMessage">
+            <!-- <span></span> -->
+            <header class = "header">
+                <h1>WELCOME TO THE SPACE GAME</h1>
+                <h4>The fate of the earth rests in your hands.</h4>
+                <h4 id = "difficulty">- - - [CHOOSE YOUR DIFFICULTY] - - -</h4>
+                
+            </header>
+            <section class = options>
+                <div class="testBlocks" >
+                    <h3>- LEVEL 1 -</h3>
+                    <h4>C  H   I   L  L</h4>
+                    <ul>
+                        <li>Fun GIFs: On</li>
+                        <li>Alien Health: Low</li>
+                        <li>Attack Damage: High</li>
+                        <li>Guaranteed Hits</li>
+                        <li>No timer</li>
+                        <div class="startGame" id = "chillBlock">START GAME</div>
+                    </ul>
+                    
+                </div>
+                <div class="testBlocks" >
+                    <h3>- LEVEL 2 -</h3>
+                    <h4>CLASSIC</h4>
+                    <ul>
+                        <li>Fun GIFs: On</li>
+                        <li>Alien Health: Medium</li>
+                        <li>Attack Damage: Medium</li>
+                        <li>No timer</li>
+                        <div class="startGame" id = "classicBlock">START GAME</div>
+
+                    </ul>
+                    
+                </div>
+                <div class="testBlocks" >
+                    <h3>- LEVEL 3 -</h3>
+                    <h4>CHALLENGING</h4>
+                    <ul>
+                        <li>Fun GIFs: Off</li>
+                        <li>Alien Health: High</li>
+                        <li>Alien Attack: High</li>
+                        <li>Attack Damage: Medium</li>
+                        <li>Timer On</li>
+                    </ul>
+                    
+                    <div class="circles">4</div>
+                    <div class="circles">5</div>
+                    <div class="circles">6</div>
+
+                    <div class="startGame" id = "challengeBlock">START GAME</div>
+
+                    
+                    
+                </div>
+                
+
+            </section>
+            <img src="./Resources/Pexels-Videos-2421545 (1).gif" alt="" id = "startGIF">
             
-        </header>
-        <section class = options>
-            <div class="testBlocks" >
-                <h3>- LEVEL 1 -</h3>
-                <h4>C  H   I   L  L</h4>
-                <ul>
-                    <li>Fun GIFs: On</li>
-                    <li>Alien Health: Low</li>
-                    <li>Attack Damage: High</li>
-                    <li>Guaranteed Hits</li>
-                    <li>No timer</li>
-                    <div class="startGame" id = "chillBlock">START GAME</div>
-                </ul>
-                
-            </div>
-            <div class="testBlocks" >
-                <h3>- LEVEL 2 -</h3>
-                <h4>CLASSIC</h4>
-                <ul>
-                    <li>Fun GIFs: On</li>
-                    <li>Alien Health: Medium</li>
-                    <li>Attack Damage: Medium</li>
-                    <li>No timer</li>
-                    <div class="startGame" id = "classicBlock">START GAME</div>
-
-                </ul>
-                
-            </div>
-            <div class="testBlocks" >
-                <h3>- LEVEL 3 -</h3>
-                <h4>CHALLENGING</h4>
-                <ul>
-                    <li>Fun GIFs: Off</li>
-                    <li>Alien Health: High</li>
-                    <li>Alien Attack: High</li>
-                    <li>Attack Damage: Medium</li>
-                    <li>Timer On</li>
-                </ul>
-                
-                <div class="circles">4</div>
-                <div class="circles">5</div>
-                <div class="circles">6</div>
-
-                <div class="startGame" id = "challengeBlock">START GAME</div>
-
-                
-                
-            </div>
-            
-
-        </section>
-        <img src="./Resources/Pexels-Videos-2421545 (1).gif" alt="" id = "startGIF">
-        
-    </div>
-    <img src="./Resources/schwartz.gif" class = "schwartz" alt="">
-    <img src="./Resources/bye2.gif" class = "bye" alt="">
-    <img src="./Resources/game-over-glitch.gif" class = "gameOver" alt="">
-    <img src="./Resources/victory.gif" class = "victory" alt="">
-    <img src="./Resources/5s.gif" alt="" class = "timeout">
-
-    <div class="timer"></div>
-    <input type="range" min = "10" max = "60" name="" id="slider" step = "5" oninput=changeTimer()>
-
-    <div class="musicBlock">
-        <label for="musicControl">MUSIC</label>
-        <img src= "https://cdn-icons-png.flaticon.com/512/6878/6878704.png" alt="" class = "musicControl">
-    </div>
-    
-
-
-
-    
-    
-    
-
-    
-
-    <div class="explanation">
-        <h4>Welcome to the CHILL MODE</h4>
-        <p>Each round will go like this:</p>
-        <ol>
-            <li>You attack the next available alien ship</li>
-            <li>If the ship survives, it attacks you!</li>
-            <li>If you destroy the ship, you have the option to retreat</li>
-            <li>Keep attacking until you've destroyed the ships or want to retreat!</li>
-        </ol>
-    </div>
-
-    <div class="explanation2">
-        <h4>Welcome to the CLASSIC MODE</h4>
-        <p>Each round will go like this:</p>
-        <ol>
-            <li>You attack the next available alien ship</li>
-            <li>If the ship survives, it attacks you!</li>
-            <li>If you destroy the ship, you have the option to retreat</li>
-            <li>Keep attacking until you've destroyed the ships or want to retreat!</li>
-        </ol>
-    </div>
-
-    <div class="explanation3">
-        <h4>Welcome to the CHALLENGE MODE</h4>
-        <p>Each round will go like this:</p>
-        <ol>
-            <li>You attack the next available alien ship</li>
-            <li>If the ship survives, it attacks you!</li>
-            <li>If you destroy the ship, you have the option to retreat</li>
-            <li>Keep attacking until you've destroyed the ships or want to retreat!</li>
-        </ol>
-    </div>
-
-
-
-
-    <h4>- - - [ YOUR HEALTH ] - - -</h4>
-    <div class="userHealth"></div>
-
-    <div class="battleStation">
-        <img src="./Resources/dizzy.png" alt="" id = "dizzy">
-        <div class = "attack">
-            <img src="./Resources/swords.png" alt="">   
         </div>
-    </div>
+        <img src="./Resources/schwartz.gif" class = "schwartz" alt="">
+        <img src="./Resources/bye2.gif" class = "bye" alt="">
+        <img src="./Resources/game-over-glitch.gif" class = "gameOver" alt="">
+        <img src="./Resources/victory.gif" class = "victory" alt="">
+        <img src="./Resources/5s.gif" alt="" class = "timeout">
 
-    <div class="messages">
-        <ul>
-            <li class = "alienMiss">ALIEN MISS</li>
-            <li class = "alienHit">SUCCESSFUL HIT</li>
-            <li class = "selfHit">YOU GOT HIT</li>
-            <li class = "selfMiss">YOU MISSED</li>
-        </ul>
-    </div>
-    <!-- <img src="./Resources/boom.gif" alt=""> -->
+        <div class="timer"></div>
+        <input type="range" min = "10" max = "60" name="" id="slider" step = "5" oninput=changeTimer()>
 
-    <hr>
-    
-        
-    </div>
-    <div class="aliens">
-        <ul>
-            <li class = "li1"> 
-                <img src = "./Resources/ufo.png" class = "ship"></img>
-                <p id = "Hull1"></p>
-
-            </li>
-            <li class = "li2">
-                <img src = "./Resources/ufo.png" class = "ship"></img>
-                <p id = "Hull2"></p>
-
-            </li>
-            <li class = "li3">
-                <img src = "./Resources/ufo.png" class = "ship"></img>
-                <p id = "Hull3"></p>
-
-            </li>
-            <li class = "li4">
-                <img src = "./Resources/ufo.png" class = "ship"></img>
-                <p id = "Hull4"></p>
-
-            </li>
-            <li class = "li5">
-                <img src = "./Resources/ufo.png" class = "ship"></img>
-                <p id = "Hull5"></p>
-
-            </li>
-            <li class = "li6">
-                <img src = "./Resources/ufo.png" class = "ship"></img>
-                <p id = "Hull6"></p>
-
-            </li>
-        </ul>
-    </div>
-    <div class="messageBoard">
-        <h2 id = "message">SHIP DESTROYED!</h2>
+        <div class="musicBlock">
+            <label for="musicControl">MUSIC</label>
+            <img src= "./Resources/pause.png" alt="" class = "musicControl">
+        </div>
         
 
-    </div>
-    <h4>SHIPS DESTROYED: <span class = "shipsDestroyed">0</span></h4>
-    <h4>DAMAGE DEALT: <span class = "damageDealt">0</span></h4>
+        <div class="shipStats">
+            <h4>CURRENT STATS</h4>
+            <hr>
+            <ul>
+                <li>Starting Health: <span id = "statsHealth"></span></li>
+                <li>Firepower: <span id = "statsFire"></span></li>
+                <li>Accuracy: <span id = "statsAcc"></span>%</li>
+            </ul>
+        </div>
+
+        
+        
+        
+
+        
+
+        <div class="explanation">
+            <h4>Welcome to the CHILL MODE</h4>
+            <p>Each round will go like this:</p>
+            <ol>
+                <li>You attack the next available alien ship</li>
+                <li>If the ship survives, it attacks you!</li>
+                <li>If you destroy the ship, you have the option to retreat</li>
+                <li>Keep attacking until you've destroyed the ships or want to retreat!</li>
+            </ol>
+        </div>
+
+        <div class="explanation2">
+            <h4>Welcome to the CLASSIC MODE</h4>
+            <p>Each round will go like this:</p>
+            <ol>
+                <li>You attack the next available alien ship</li>
+                <li>If the ship survives, it attacks you!</li>
+                <li>If you destroy the ship, you have the option to retreat</li>
+                <li>Keep attacking until you've destroyed the ships or want to retreat!</li>
+            </ol>
+        </div>
+
+        <div class="explanation3">
+            <h4>Welcome to the CHALLENGE MODE</h4>
+            <p>Each round will go like this:</p>
+            <ol>
+                <li>You attack the next available alien ship</li>
+                <li>If the ship survives, it attacks you!</li>
+                <li>If you destroy the ship, you have the option to retreat</li>
+                <li>Keep attacking until you've destroyed the ships or want to retreat!</li>
+            </ol>
+        </div>
+
+
+
+
+        <h4>- - - [ YOUR HEALTH ] - - -</h4>
+        <div class="userHealth"></div>
+
+        <div class="battleStation">
+            <img src="./Resources/dizzy.png" alt="" id = "dizzy">
+            <div class = "attack">
+                <img src="./Resources/swords.png" alt="">   
+            </div>
+        </div>
+
+        <div class="messages">
+            <ul>
+                <li class = "alienMiss">ALIEN MISS</li>
+                <li class = "alienHit">SUCCESSFUL HIT</li>
+                <li class = "selfHit">YOU GOT HIT</li>
+                <li class = "selfMiss">YOU MISSED</li>
+            </ul>
+        </div>
+        <!-- <img src="./Resources/boom.gif" alt=""> -->
+
+        <hr>
+        
+            
+        </div>
+        <div class="aliens">
+            <ul>
+                <li class = "li1"> 
+                    <img src="./Resources/boom.gif" class = "boom" id = "boom1">
+                    <img src = "./Resources/alienship2.gif" loading = "lazy" class = "ship"></img>
+                    <p id = "Hull1"></p>
+
+                </li>
+                <li class = "li2">
+                    <img src="./Resources/boom.gif" class = "boom" id = "boom2">
+                    <img src = "./Resources/alienship2.gif" class = "ship"></img>
+                    <p id = "Hull2"></p>
+
+                </li>
+                <li class = "li3">
+                    <img src="./Resources/boom.gif" class = "boom" id = "boom3">
+                    <img src = "./Resources/alienship2.gif" class = "ship"></img>
+                    <p id = "Hull3"></p>
+
+                </li>
+                <li class = "li4">
+                    <img src="./Resources/boom.gif" class = "boom" id = "boom4">
+                    <img src = "./Resources/alienship2.gif" class = "ship"></img>
+                    <p id = "Hull4"></p>
+
+                </li>
+                <li class = "li5">
+                    <img src="./Resources/boom.gif" class = "boom" id = "boom5">
+                    <img src = "./Resources/alienship2.gif" class = "ship"></img>
+                    <p id = "Hull5"></p>
+
+                </li>
+                <li class = "li6">
+                    <img src="./Resources/boom.gif" class = "boom" id = "boom6">
+                    <img src = "./Resources/alienship2.gif" class = "ship"></img>
+                    <p id = "Hull6"></p>
+
+                </li>
+            </ul>
+        </div>
+        <div class="messageBoard">
+            <h2 id = "message">SHIP DESTROYED!</h2>
+            
+
+        </div>
+        <h4>SHIPS DESTROYED: <span class = "shipsDestroyed">0</span></h4>
+        <h4>DAMAGE DEALT: <span class = "damageDealt">0</span></h4>
+        
+        
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <a href="https://www.flaticon.com/free-icons/sword" title="sword icons">Sword/alien icons created by Freepik - Flaticon</a>
     
-    
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <a href="https://www.flaticon.com/free-icons/sword" title="sword icons">Sword/alien icons created by Freepik - Flaticon</a>
 </body>
 </html>

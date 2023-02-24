@@ -1,5 +1,13 @@
 // import {negativeIndexes} from '/Users/johnthomas/Downloads/use-negative-indexes-main/node_modules/use-negative-indexes'
 
+function query(id) {
+    if(document.querySelectorAll(id).length > 1){
+        return Array.from(document.querySelectorAll(id))
+    } else {
+        return document.querySelector(id)
+    }
+}
+
 const attack = document.querySelector(".attack");
 const userHealth = document.querySelector(".userHealth");
 const schwartz = document.querySelector(".schwartz")
@@ -10,6 +18,10 @@ const timeout = document.querySelector(".timeout")
 const explanation = document.querySelector(".explanation")
 const explanation2 = document.querySelector(".explanation2")
 const explanation3 = document.querySelector(".explanation3")
+
+const statsHealth = query("#statsHealth")
+const statsFire = query("#statsFire")
+const statsAcc = query("#statsAcc")
 
 const selfHit = document.querySelector(".selfHit")
 const alienHit = document.querySelector(".alienHit")
@@ -25,17 +37,22 @@ const startMessage = document.querySelector(".startMessage")
 const startGIF = document.querySelector("#startGIF")
 const header = document.querySelector(".header")
 const options = document.querySelector(".options")
+const difficulty = query("#difficulty")
 let lofi = new Audio("Resources/yt5s.io - mechanical Ivy (128 kbps).mp3")
+let midLoFi = new Audio("Resources/Irresistible..mp3")
+let challengeLoFi = new Audio("Resources/CinnamonSpeedway.mp3")
+let activeSong = lofi
 const music = document.querySelector(".musicControl")
 const dizzy = document.querySelector("#dizzy")
 
-function query(id) {
-    if(NodeList.prototype.isPrototypeOf(document.querySelectorAll(id))){
-        return document.querySelectorAll(id)
-    } else {
-        return document.querySelector(id)
-    }
-}
+const boom1 = query("#boom1")
+const boom2 = query("#boom2")
+const boom3 = query("#boom3")
+const boom4 = query("#boom4")
+const boom5 = query("#boom5")
+const boom6 = query("#boom6")
+
+
 const circles = query(".circles")
 console.log(circles)
 
@@ -44,15 +61,22 @@ let shipSelection = 6
 circles.forEach((circle)=>{
     circle.addEventListener("click",()=>{
         circle.style.border = "solid white 3px"
+        circle.style.boxShadow = "0px 0px 15px white"
         shipSelection = circle.innerText
         console.log(shipSelection)
     }
     )
 })
 
+let userStats = {
+    shipsDestroyed: 0,
+    damageTaken: 0,
+    damageDealt: 0
+}
 
-let playSymbol = "https://cdn-icons-png.flaticon.com/512/6878/6878705.png"
-let pauseSymbol = "https://cdn-icons-png.flaticon.com/512/6878/6878704.png"
+
+let playSymbol = "./Resources/play.png"
+let pauseSymbol = "./Resources/pause.png"
 
 const chill = document.querySelector("#chillBlock")
 const classic = document.querySelector("#classicBlock")
@@ -88,13 +112,18 @@ chill.addEventListener("click",()=> {
     gameType = "chill"
 
     aliens.forEach(ship => {
-        setParams(20,[3,5],1,ship,[4,7],[2,3],[0.6,0.7])
+        setParams(25,[3,5],1,ship,[4,7],[2,3],[0.6,0.7])
     })
+    explanation.style.display = "block"
+    setShipStats()
     gifs = true;
     console.log(aliens)
+
+    
     lofi.play()
     lofi.volume = 0.1;
-    // pause.classList.add("playing");
+    activeSong = lofi
+    
 })
 
 classic.addEventListener("click",()=> {
@@ -105,9 +134,14 @@ classic.addEventListener("click",()=> {
     aliens.forEach(ship => {
         setParams(20,[3,4],0.8,ship,[5,9],[3,4],[0.65,0.75])
     })
+    setShipStats()
+
     explanation2.style.display = "block"
     gifs = true;
 
+    midLoFi.play()
+    midLoFi.volume = 0.1
+    activeSong = midLoFi
 })
 
 challenge.addEventListener("click",()=> {
@@ -119,11 +153,17 @@ challenge.addEventListener("click",()=> {
         setParams(15,[2,4],0.8,ship,[7,11],[3,6],[0.65,0.75])
     })
 
+    setShipStats()
+    setShipsDOM();
     explanation3.style.display = "block"
     timer.style.opacity = 1;
     slider.style.opacity = 1;
 
     gifs = false;
+
+    challengeLoFi.play()
+    challengeLoFi.volume = 0.1
+    activeSong = challengeLoFi
 
 })
 
@@ -140,13 +180,32 @@ challenge.addEventListener("click",()=> {
     
 // })
 
+// function pausePlay(active) {
+//     if(music.src === playSymbol){
+//         console.log("Changing to pause")
+//         music.setAttribute("src", './Resources/pause.png');
+//         active.play()
+//     } else if(music.src === pauseSymbol){
+//         console.log("Changing to play")
+
+//         music.setAttribute("src", './Resources/play.png');
+//         active.pause()
+//     }
+// }
+
 music.addEventListener("click",()=> {
-    if(music.src === playSymbol){
-        music.src = pauseSymbol;
-        lofi.play()
-    } else if(music.src === pauseSymbol){
-        music.src = playSymbol;
-        lofi.pause()
+    console.log("Button working?")
+    console.log(music.src + " " + playSymbol + " " + pauseSymbol)
+
+    if(music.src.includes('play')){
+        console.log("Changing to pause")
+        music.setAttribute('src', './Resources/pause.png');
+        activeSong.play()
+    } else if(music.src.includes('pause')){
+        console.log("Changing to play")
+
+        music.setAttribute('src', './Resources/play.png');
+        activeSong.pause()
     }
 })
 
@@ -155,6 +214,7 @@ startMessage.style.opacity = "1"
 
 header.addEventListener("mouseover", ()=>{
     // header.classList.add("expanded")
+    difficulty.style.opacity = "1"
     header.style.transform = "translateY(-100px)"
     options.style.opacity = "1"
     options.style.gap = "90px"
@@ -275,10 +335,18 @@ function updateHealth(){
 
 }
 
+//SET SHIPSTATS IN DOM
+function setShipStats (){
+    statsHealth.innerText = ship.hull
+    statsFire.innerText = ship.firepower
+    statsAcc.innerText = ship.accuracy * 100
+}
+
 //INITIALIZE HELPER VARIABLES
 
 let currentAlienShip = 0;
 let retreat = "";
+
 
 //MAIN ACTION FUNCTION (Comments made only on first ship - all six are identical)
 
@@ -316,6 +384,9 @@ function updateShipHulls (shipID) {
             alienShip1.dead = true;
             alienHull1.style.fontSize = "18px"
             alienHull1.innerText = "DESTROYED!"
+
+            boom(boom1)
+
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(1)
             // retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
@@ -658,6 +729,13 @@ function shipDown() {
     }
 }
 
+function boom(id) {
+    id.style.display = "block"
+    setTimeout(()=>{
+        id.style.display = "none"
+    },7000)
+}
+
 //DISPLAY RETREAT GIF
 
 function retreatAnimation () {
@@ -691,13 +769,19 @@ function updateHull (firepower) {
     
 }
 
-if(gameType === "challenge"){
-    if(shipSelection === 4) {
-        li5.style.display = "none"
-        li6.style.display = "none"
-    }
+function setShipsDOM() {
+        console.log("SHIP SELECITON = " + shipSelection)
+        if(shipSelection == 4) {
+            li5.style.display = "none"
+            li6.style.display = "none"
+        } else if (shipSelection == 5) {
+            li6.style.display = "none"
+            
+            console.log("You should be working...")
+        }
+
 }
-li4.style.display = "none"
+
 
 
 //POINTLESS EVENT LISTENER/FUNCTION COMBO BECAUSE IT BREAKS IF I TRY ANYTHING ELSE
