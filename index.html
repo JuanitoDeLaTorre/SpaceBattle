@@ -56,7 +56,7 @@
                         <li>Attack Damage: Medium</li>
                         <li>Timer On</li>
                     </ul>
-                    
+                    <p>Number of ships</p>
                     <div class="circles">4</div>
                     <div class="circles">5</div>
                     <div class="circles">6</div>
@@ -72,6 +72,7 @@
             <img src="./Resources/Pexels-Videos-2421545 (1).gif" alt="" id = "startGIF">
             
         </div>
+
         <img src="./Resources/schwartz.gif" class = "schwartz" alt="">
         <img src="./Resources/bye2.gif" class = "bye" alt="">
         <img src="./Resources/game-over-glitch.gif" class = "gameOver" alt="">
@@ -104,8 +105,9 @@
         
 
         <div class="explanation">
-            <h4>Welcome to the CHILL MODE</h4>
-            <p>Each round will go like this:</p>
+            <h4>- Welcome to the <span style = "color: rgb(0, 155, 88); text-shadow: 0px 0px 2px rgb(0, 155, 88);">CHILL MODE</span> -</h4>
+            <p>Yeah, there are aliens attacking, but they’ve got nothing on you. Sit back, relax, and get blasting!</p>
+            <p style = "color:rgb(0, 155, 88)">Each round will go like this:</p>
             <ol>
                 <li>You attack the next available alien ship</li>
                 <li>If the ship survives, it attacks you!</li>
@@ -115,8 +117,9 @@
         </div>
 
         <div class="explanation2">
-            <h4>Welcome to the CLASSIC MODE</h4>
-            <p>Each round will go like this:</p>
+            <h4>- Welcome to <span style = "color: rgb(0, 101, 155); text-shadow: 0px 0px 2px white;">CLASSIC MODE -</span></h4>
+            <h4>Earth is under attack! You may very well be our planet’s last hope so let’s get to work to protect our home!</h4>
+            <p style = "color:rgb(0, 101, 155)">Each round will go like this:</p>
             <ol>
                 <li>You attack the next available alien ship</li>
                 <li>If the ship survives, it attacks you!</li>
@@ -126,14 +129,22 @@
         </div>
 
         <div class="explanation3">
-            <h4>Welcome to the CHALLENGE MODE</h4>
-            <p>Each round will go like this:</p>
+            <h4>- Welcome to <span style = "color: rgb(184, 31, 31); text-shadow: 0px 0px 3px rgb(126, 1, 1);">CHALLENGE MODE</span> -</h4>
+            <h4 style = "font-size: 1.3em;">Earth is under attack! And it looks like the aliens have sent their best fleet…good luck soldier.&#129761</h4>
+            <p style = "color:rgb(184, 31, 31)">Each round will go like this:</p>
             <ol>
                 <li>You attack the next available alien ship</li>
                 <li>If the ship survives, it attacks you!</li>
                 <li>If you destroy the ship, you have the option to retreat</li>
                 <li>Keep attacking until you've destroyed the ships or want to retreat!</li>
             </ol>
+            <p style = "color:rgb(184, 31, 31); font-size: 1.5em;">Because you're a psychopath, there are a few extra features to help you challenge yourself:</p>
+            <ul>
+                <li>Timer you can set yourself. See how many ships you can destroy before the timer runs out!</li>
+                <li>Increased alien health, attack, and accuracy</li>
+                <li>A 2s stun whenever you get hit</li>
+                <li>Option to retreat after alien ship takedown that will restore 10 health, but cost you 5s</li>
+            </ul>
         </div>
 
 
@@ -208,8 +219,21 @@
             
 
         </div>
-        <h4>SHIPS DESTROYED: <span class = "shipsDestroyed">0</span></h4>
-        <h4>DAMAGE DEALT: <span class = "damageDealt">0</span></h4>
+        <!-- <h4>SHIPS DESTROYED: <span class = "shipsDestroyed">0</span></h4>
+        <h4>DAMAGE DEALT: <span class = "damageDealt">0</span></h4> -->
+
+        <div class="gameOverStats">
+            <h3>- GAME OVER -</h3>
+            <h4>Here are your stats:</h4>
+            <ul>
+                <li>Ships Destroyed: <span class = "shipsDestroyed">0</span></li>
+                <li>Damage Dealt: <span class = "damageDealt">0</span></li>
+                <li>Damage Taken: <span class = "damageTaken">0</span></li>
+            </ul>
+            <div class="restart"><p>Play Again</p>
+                
+            </div>
+        </div>
         
         
         <br><br><br><br><br><br><br><br><br><br><br><br>

@@ -128,30 +128,6 @@ h4 {
     margin-bottom: 5px;
 }
 
-.explanation {
-    display: none;
-    text-align: left;
-    position: absolute;
-    width: 500px;
-    height: auto;
-    padding-top: 5px;
-    left: -100%;
-    top: -15%;
-    font-size: 0.75em;
-    border: solid red 3px;
-    transition: all 1000ms ease-out;
-}
-
-.explanation > h4 {
-    font-size: 2em;
-}
-
-.explanation > ol {
-    text-align: left;
-    display: flex;
-    list-style-type: disc;
-    gap: 30px;
-}
 
 
 .userHealth {
@@ -461,9 +437,15 @@ h4 {
     border-radius: 20px;
 }
 
-/* .testBlocks:nth-child(3){
-    height: 300px;
-} */
+.testBlocks > p {
+    display: none;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid white 1px;
+}
 
 .testBlocks:hover {
     /* transform: scale(105%); */
@@ -569,8 +551,8 @@ label {
 #dizzy {
     display: none;
     position: absolute;
-    left: 35%;
-    top: 19%;
+    left: 32%;
+    top: 8%;
     height: 150px;
     width: auto;
     animation: rotate 2s linear infinite;
@@ -615,7 +597,10 @@ label {
 
 .testBlocks:nth-child(3):hover > .circles {
     display: inline-block;
-    
+}
+
+.testBlocks:nth-child(3):hover > p {
+    display: block;
 }
 
 .startGame {
@@ -644,6 +629,32 @@ label {
     
 }
 
+.explanation {
+    display: none;
+    text-align: left;
+    position: absolute;
+    width: 500px;
+    height: auto;
+    padding-top: 5px;
+    left: -100%;
+    top: -15%;
+    font-size: 0.75em;
+    border: solid red 3px;
+    border-radius: 30px;
+    background-color: rgba(0,0,0,0.7);
+
+    transition: all 1000ms ease-out;
+}
+
+.explanation > p {
+    font-size: 1.5em;
+    text-shadow: 0px 0px 2px rgb(0, 155, 88);
+}
+
+.explanation > ol {
+    font-size: 1.5em;
+}
+
 .explanation2 {
     display: none;
     text-align: left;
@@ -656,6 +667,17 @@ label {
     font-size: 0.75em;
     border: solid red 3px;
     transition: all 1000ms ease-out;
+    background-color: rgba(0,0,0,0.7);
+
+}
+
+.explanation2 > p {
+    font-size: 1.5em;
+    text-shadow: 0px 0px 2px rgb(0, 101, 155);
+}
+
+.explanation2 > ol {
+    font-size: 1.5em;
 }
 
 .explanation3 {
@@ -670,6 +692,25 @@ label {
     font-size: 0.75em;
     border: solid red 3px;
     transition: all 1000ms ease-out;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 100;
+}
+
+.explanation3 > p {
+    font-size: 1.5em;
+    text-shadow: 0px 0px 2px rgb(0, 101, 155);
+}
+
+.explanation3 > ol {
+    font-size: 1.5em;
+}
+
+.explanation3 > ul {
+    font-size: 1.5em;
+}
+
+.explanation3 > ul > li {
+    height: auto;
 }
 
 .boom {
@@ -680,6 +721,7 @@ label {
 }
 
 .li1, .li2, .li3, .li4, .li5, .li6 {
+    transition: all 400ms ease-in-out;
     position: relative;
     transform: scale(120%);
 }
@@ -712,4 +754,53 @@ label {
 
 .shipStats > hr {
     width: 90%;
+}
+
+.gameOverStats {
+    display: none;
+    position: absolute;
+    height: auto;
+    width: auto;
+    content: "";
+    right: 0%;
+    top: 40%;
+    box-shadow: 0px 0px 30px white;
+    z-index: 100;
+    background-image: url("https://images.unsplash.com/photo-1604983048955-32f38fa4356a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80");
+    background-position: cover;
+    background-repeat: no-repeat;
+    background-size: 120%;
+    background-color: black;
+    padding: 30px;
+    border-radius: 20px;
+    transition: all 1000ms ease-in;
+}
+
+.gameOverStats > h3,h4 {
+    text-align: center;
+
+}
+
+
+.gameOverStats > ul > li {
+    height: 3rem;
+}
+
+.restart {
+    display: flex;
+    align-items: center;
+    height: 25px;
+    width: 100px;
+    margin: auto;
+    background-color: white;
+    color:#144ea0;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 200ms ease-in-out;
+}
+
+.restart:hover {
+    transform: scale(105%);
+    box-shadow: 0px 0px 15px white;
 }

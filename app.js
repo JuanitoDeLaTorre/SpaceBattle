@@ -8,35 +8,38 @@ function query(id) {
     }
 }
 
-const attack = document.querySelector(".attack");
-const userHealth = document.querySelector(".userHealth");
-const schwartz = document.querySelector(".schwartz")
-const bye = document.querySelector(".bye")
-const over = document.querySelector(".gameOver")
-const victory = document.querySelector(".victory")
-const timeout = document.querySelector(".timeout")
-const explanation = document.querySelector(".explanation")
-const explanation2 = document.querySelector(".explanation2")
-const explanation3 = document.querySelector(".explanation3")
+const attack = query(".attack");
+const userHealth = query(".userHealth");
+const schwartz = query(".schwartz")
+const bye = query(".bye")
+const over = query(".gameOver")
+const victory = query(".victory")
+const timeout = query(".timeout")
+const explanation = query(".explanation")
+const explanation2 = query(".explanation2")
+const explanation3 = query(".explanation3")
+const gameOverStats = query(".gameOverStats")
+const restart = query(".restart")
 
 const statsHealth = query("#statsHealth")
 const statsFire = query("#statsFire")
 const statsAcc = query("#statsAcc")
 
-const selfHit = document.querySelector(".selfHit")
-const alienHit = document.querySelector(".alienHit")
-const selfMiss = document.querySelector(".selfMiss")
-const alienMiss = document.querySelector(".alienMiss")
-const shipsDestroyedDOM = document.querySelector(".shipsDestroyed")
-const damageDealtDOM = document.querySelector(".damageDealt")
-const timer = document.querySelector(".timer")
-const slider = document.querySelector("#slider")
-const message = document.querySelector("#message")
-const messageBoard = document.querySelector(".messageBoard")
-const startMessage = document.querySelector(".startMessage")
-const startGIF = document.querySelector("#startGIF")
-const header = document.querySelector(".header")
-const options = document.querySelector(".options")
+const selfHit = query(".selfHit")
+const alienHit = query(".alienHit")
+const selfMiss = query(".selfMiss")
+const alienMiss = query(".alienMiss")
+const shipsDestroyedDOM = query(".shipsDestroyed")
+const damageDealtDOM = query(".damageDealt")
+const damageTakenDOM = query(".damageTaken")
+const timer = query(".timer")
+const slider = query("#slider")
+const message = query("#message")
+const messageBoard = query(".messageBoard")
+const startMessage = query(".startMessage")
+const startGIF = query("#startGIF")
+const header = query(".header")
+const options = query(".options")
 const difficulty = query("#difficulty")
 let lofi = new Audio("Resources/yt5s.io - mechanical Ivy (128 kbps).mp3")
 let midLoFi = new Audio("Resources/Irresistible..mp3")
@@ -385,7 +388,7 @@ function updateShipHulls (shipID) {
             alienHull1.style.fontSize = "18px"
             alienHull1.innerText = "DESTROYED!"
 
-            boom(boom1)
+            boom(boom1,li1)
 
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(1)
@@ -427,6 +430,10 @@ function updateShipHulls (shipID) {
             alienShip2.dead = true;
             alienHull2.style.fontSize = "18px"
             alienHull2.innerText = "DESTROYED!"
+
+            boom(boom2,li2)
+
+
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(2);
 
@@ -466,6 +473,9 @@ function updateShipHulls (shipID) {
             alienShip3.dead = true;
             alienHull3.style.fontSize = "18px"
             alienHull3.innerText = "DESTROYED!"
+
+            boom(boom3,li3)
+
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(3);
 
@@ -505,6 +515,9 @@ function updateShipHulls (shipID) {
             alienShip4.dead = true;
             alienHull4.style.fontSize = "18px"
             alienHull4.innerText = "DESTROYED!"
+
+            boom(boom4,li4)
+
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(4);
 
@@ -545,6 +558,9 @@ function updateShipHulls (shipID) {
             alienShip5.dead = true;
             alienHull5.style.fontSize = "18px"
             alienHull5.innerText = "DESTROYED!"
+
+            boom(boom5,li5)
+
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(5);
 
@@ -584,6 +600,9 @@ function updateShipHulls (shipID) {
             alienShip6.dead = true;
             alienHull6.style.fontSize = "18px"
             alienHull6.innerText = "DESTROYED!"
+
+            boom(boom6,li6)
+
             console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(6);
 
@@ -729,11 +748,21 @@ function shipDown() {
     }
 }
 
-function boom(id) {
+function boom(id,liNum) {
     id.style.display = "block"
-    setTimeout(()=>{
-        id.style.display = "none"
-    },7000)
+
+    if(gameType != "challenge"){
+        setTimeout(()=>{
+            liNum.style.opacity = "0"
+            id.style.display = "none"
+        },7000)
+    } else {
+        setTimeout(()=>{
+            liNum.style.opacity = "0"
+            id.style.display = "none"
+        },3000)
+    }
+    
 }
 
 //DISPLAY RETREAT GIF
@@ -798,9 +827,6 @@ function handleAttack() {
     explanation2.style.opacity = "0"
     explanation3.style.opacity = "0"
 
-    // explanation.style.display = "none"
-    // explanation2.style.display = "none"
-    // explanation3.style.display = "none"
 
     updateShipHulls(currentAlienShip);
 }
@@ -813,12 +839,23 @@ timer.addEventListener("click",startTimer)
 
 
 function startTimer() {
+    console.log(timer.classList)
     if(!timer.classList.contains("running")){
         timer.classList.add("running")
 
         let set = setInterval(()=> {
             if(startTime === 0){
+                timeout.classList.remove("running")
                 clearInterval(set);
+                aliens.forEach(ship => {
+                    setParams(15,[2,4],0.8,ship,[7,11],[3,6],[0.65,0.75])
+                })
+                shipsDestroyedDOM.innerText = shipsDestroyed
+                damageDealtDOM.innerText = damageDealt
+                damageTakenDOM.innerText = damageTaken
+                gameOverStats.style.display = "block"
+                gameOverStats.style.transform = "scale(150%)"
+
             } else if (startTime <= 11 && startTime >=7){
                 timer.style.color = "orange"
                 startTime--
@@ -834,6 +871,7 @@ function startTimer() {
             
         },1000)
     } else {
+        
         timer.innerText = startTime
         timer.classList.remove("running")
         clearInterval(set)
@@ -841,12 +879,11 @@ function startTimer() {
     
 }
 
-// for(let i = startTime; i > 0;i--){
-//     setTimeout(()=>{
-//         console.log("Fireing?")
-//         timer.innerHTML = startTime
-//     },1000)
-// }
+restart.addEventListener("click",()=> {
+    location.reload();
+})
+
+
 
 function changeTimer() {
     console.log("changing")
