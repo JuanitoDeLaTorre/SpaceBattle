@@ -45,8 +45,17 @@ let lofi = new Audio("Resources/yt5s.io - mechanical Ivy (128 kbps).mp3")
 let midLoFi = new Audio("Resources/Irresistible..mp3")
 let challengeLoFi = new Audio("Resources/CinnamonSpeedway.mp3")
 let activeSong = lofi
-const music = document.querySelector(".musicControl")
-const dizzy = document.querySelector("#dizzy")
+const music = query(".musicControl")
+const dizzy = query("#dizzy")
+
+let gifBank = ["https://media4.giphy.com/media/26BRNKLUezD1NpsOc/giphy.gif?cid=ecf05e473c7fx3sepozw7yaucqeb6wx4ogmfza0plp5ujnuq&rid=giphy.gif&ct=g",
+"https://media0.giphy.com/media/SuVZk2PWL6izAOYT1T/giphy.gif?cid=ecf05e473c7fx3sepozw7yaucqeb6wx4ogmfza0plp5ujnuq&rid=giphy.gif&ct=g",
+"https://media3.giphy.com/media/hDFyKdd2XBqU/giphy.gif?cid=ecf05e47bj4wxdp7avoebzny6oyx2bjbqfa2nrr28sv62l5d&rid=giphy.gif&ct=g",
+"https://media1.giphy.com/media/PApUlVfEFmZAQ/giphy.gif?cid=ecf05e47507wzh60frvnagku85pqnz4120cgbkljz2qaf36c&rid=giphy.gif&ct=g",
+"https://media2.giphy.com/media/XBoudmRMb6woaZ6JI7/giphy.gif?cid=ecf05e47bj4wxdp7avoebzny6oyx2bjbqfa2nrr28sv62l5d&rid=giphy.gif&ct=g",
+"https://media3.giphy.com/media/AiLwj4cLiqbN59YdpB/giphy.gif?cid=ecf05e47h8ep7kcfwr0pwjt2wslahi8qko47aefvd8h0ue49&rid=giphy.gif&ct=g",
+"https://media2.giphy.com/media/RJddmVhFR04GisOuII/giphy.gif?cid=ecf05e47vompn94gytlx6qlymk6pb3nupc7ijonltpst0e2s&rid=giphy.gif&ct=g",
+"https://media4.giphy.com/media/yzC9QWcomU2m4/giphy.gif?cid=ecf05e47dl4ll6rt80jtn9dg4pyg0r95edt4duppd4fqxugm&rid=giphy.gif&ct=g"]
 
 const boom1 = query("#boom1")
 const boom2 = query("#boom2")
@@ -115,7 +124,7 @@ chill.addEventListener("click",()=> {
     gameType = "chill"
 
     aliens.forEach(ship => {
-        setParams(25,[3,5],1,ship,[4,7],[2,3],[0.6,0.7])
+        setParams(25,[3,5],1,ship,[4,7],[2,300],[0.6,0.7])
     })
     explanation.style.display = "block"
     setShipStats()
@@ -740,12 +749,16 @@ function showMiss (type) {
 //DISPLAY ALIEN SHIP DEATH GIF
 
 function shipDown() {
+    console.log(gifBank[Math.floor(Math.random(gifBank.length))])
     if(gifs){
+        schwartz.src = gifBank[Math.floor(Math.random()*gifBank.length)]
         schwartz.style.display = "block"
         setTimeout(()=> {
             schwartz.style.display = "none"
         },3000)
     }
+    console.log(gifBank[Math.floor(Math.random(gifBank.length))])
+
 }
 
 function boom(id,liNum) {
@@ -768,7 +781,7 @@ function boom(id,liNum) {
 //DISPLAY RETREAT GIF
 
 function retreatAnimation () {
-    bye.style.opacity = "0.1"
+    bye.style.opacity = "1"
     bye.style.top = "0%"
     bye.style.height = "80vh"
     bye.style.transform = "translateY(0)"
@@ -793,6 +806,8 @@ function updateHull (firepower) {
         setTimeout(()=> {
             timeout.style.display = "none"
         },4500)
+    } else if(ship.hull <= 0) {
+        displayGameOver();
     }
     
     
@@ -847,9 +862,9 @@ function startTimer() {
             if(startTime === 0){
                 timeout.classList.remove("running")
                 clearInterval(set);
-                aliens.forEach(ship => {
-                    setParams(15,[2,4],0.8,ship,[7,11],[3,6],[0.65,0.75])
-                })
+                // aliens.forEach(ship => {
+                //     setParams(15,[2,4],0.8,ship,[7,11],[3,6],[0.65,0.75])
+                // })
                 shipsDestroyedDOM.innerText = shipsDestroyed
                 damageDealtDOM.innerText = damageDealt
                 damageTakenDOM.innerText = damageTaken
@@ -883,7 +898,13 @@ restart.addEventListener("click",()=> {
     location.reload();
 })
 
-
+function displayGameOver() {
+    shipsDestroyedDOM.innerText = shipsDestroyed
+    damageDealtDOM.innerText = damageDealt
+    damageTakenDOM.innerText = damageTaken
+    gameOverStats.style.display = "block"
+    gameOverStats.style.transform = "scale(150%)"
+}
 
 function changeTimer() {
     console.log("changing")

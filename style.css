@@ -760,10 +760,10 @@ label {
     display: none;
     position: absolute;
     height: auto;
-    width: auto;
+    width: 400px;
     content: "";
-    right: 0%;
-    top: 40%;
+    right: 10%;
+    top: 5%;
     box-shadow: 0px 0px 30px white;
     z-index: 100;
     background-image: url("https://images.unsplash.com/photo-1604983048955-32f38fa4356a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80");
@@ -774,9 +774,17 @@ label {
     padding: 30px;
     border-radius: 20px;
     transition: all 1000ms ease-in;
+    text-shadow: 0px 0px 3px rgb(0, 0, 0);
+    animation: pulseSize 2s linear infinite;
 }
 
-.gameOverStats > h3,h4 {
+@keyframes pulseSize {
+    0%{transform: scale(100%);}
+    50%{transform: scale(105%);}
+    100%{transform: scale(100%);}
+}
+
+.gameOverStats > h1 {
     text-align: center;
 
 }
