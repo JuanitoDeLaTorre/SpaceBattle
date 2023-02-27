@@ -487,12 +487,13 @@ label {
 #dizzy {
     display: none;
     position: absolute;
-    left: 32%;
-    top: 8%;
+    left: 30%;
+    top: -6%;
     height: 150px;
     width: auto;
     animation: rotate 2s linear infinite;
     z-index: 100;
+    transform: scale(120%);
 }
 
 @keyframes rotate {

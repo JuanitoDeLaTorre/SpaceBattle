@@ -1,4 +1,3 @@
-// import {negativeIndexes} from '/Users/johnthomas/Downloads/use-negative-indexes-main/node_modules/use-negative-indexes'
 
 function query(id) {
     if(document.querySelectorAll(id).length > 1){
@@ -7,6 +6,7 @@ function query(id) {
         return document.querySelector(id)
     }
 }
+
 
 const attack = query(".attack");
 const userHealth = query(".userHealth");
@@ -32,6 +32,7 @@ const alienMiss = query(".alienMiss")
 const shipsDestroyedDOM = query(".shipsDestroyed")
 const damageDealtDOM = query(".damageDealt")
 const damageTakenDOM = query(".damageTaken")
+const gameState = query(".gameState")
 const timer = query(".timer")
 const slider = query("#slider")
 const message = query("#message")
@@ -55,7 +56,8 @@ let gifBank = ["https://media4.giphy.com/media/26BRNKLUezD1NpsOc/giphy.gif?cid=e
 "https://media2.giphy.com/media/XBoudmRMb6woaZ6JI7/giphy.gif?cid=ecf05e47bj4wxdp7avoebzny6oyx2bjbqfa2nrr28sv62l5d&rid=giphy.gif&ct=g",
 "https://media3.giphy.com/media/AiLwj4cLiqbN59YdpB/giphy.gif?cid=ecf05e47h8ep7kcfwr0pwjt2wslahi8qko47aefvd8h0ue49&rid=giphy.gif&ct=g",
 "https://media2.giphy.com/media/RJddmVhFR04GisOuII/giphy.gif?cid=ecf05e47vompn94gytlx6qlymk6pb3nupc7ijonltpst0e2s&rid=giphy.gif&ct=g",
-"https://media4.giphy.com/media/yzC9QWcomU2m4/giphy.gif?cid=ecf05e47dl4ll6rt80jtn9dg4pyg0r95edt4duppd4fqxugm&rid=giphy.gif&ct=g"]
+"https://media4.giphy.com/media/yzC9QWcomU2m4/giphy.gif?cid=ecf05e47dl4ll6rt80jtn9dg4pyg0r95edt4duppd4fqxugm&rid=giphy.gif&ct=g",
+"https://media4.giphy.com/media/26BRNKLUezD1NpsOc/giphy.gif?cid=ecf05e473c7fx3sepozw7yaucqeb6wx4ogmfza0plp5ujnuq&rid=giphy.gif&ct=g"]
 
 const boom1 = query("#boom1")
 const boom2 = query("#boom2")
@@ -140,7 +142,7 @@ classic.addEventListener("click",()=> {
     gameType = "classic"
 
     aliens.forEach(ship => {
-        setParams(20,[3,4],0.8,ship,[5,9],[3,4],[0.65,0.75])
+        setParams(25,[3,5],0.8,ship,[5,7],[3,4],[0.65,0.75])
     })
     setShipStats()
 
@@ -319,7 +321,8 @@ function updateShipHulls (shipID) {
 
     //CHECK VICTORY
     if(currentAlienShip === 6) {
-        victory.style.display = "block"
+        displayGameOver();
+        // victory.style.display = "block"
         return console.log("You won!");
     }
 
@@ -706,9 +709,9 @@ function setShipsDOM() {
 attack.addEventListener("click", handleAttack)
 
 function handleAttack() {
-
-    if(currentAlienShip === shipSelection) {
-        victory.style.display = "block"
+    console.log(currentAlienShip + " " + shipSelection)
+    if(currentAlienShip == shipSelection) {
+        displayGameOver();
     }
 
     explanation.style.opacity = "0"
@@ -771,6 +774,9 @@ restart.addEventListener("click",()=> {
 })
 
 function displayGameOver() {
+    if(ship.hull > 0){
+        gameState.innerText = "- YOU WON -"
+    }
     shipsDestroyedDOM.innerText = shipsDestroyed
     damageDealtDOM.innerText = damageDealt
     damageTakenDOM.innerText = damageTaken
