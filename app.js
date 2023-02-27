@@ -66,7 +66,6 @@ const boom6 = query("#boom6")
 
 
 const circles = query(".circles")
-console.log(circles)
 
 let shipSelection = 6
 
@@ -75,7 +74,6 @@ circles.forEach((circle)=>{
         circle.style.border = "solid white 3px"
         circle.style.boxShadow = "0px 0px 15px white"
         shipSelection = circle.innerText
-        console.log(shipSelection)
     }
     )
 })
@@ -119,19 +117,17 @@ const li6 = document.querySelector(".li6")
 //START MESSAGE EVENT LISTENERS
 
 chill.addEventListener("click",()=> {
-    console.log("CHILL SELECTED")
+    
     startMessage.style.display = "none"
     gameType = "chill"
 
     aliens.forEach(ship => {
-        setParams(25,[3,5],1,ship,[4,7],[2,300],[0.6,0.7])
+        setParams(25,[3,5],1,ship,[4,7],[2,3],[0.6,0.7])
     })
     explanation.style.display = "block"
     setShipStats()
     gifs = true;
-    console.log(aliens)
-
-    
+ 
     lofi.play()
     lofi.volume = 0.1;
     activeSong = lofi
@@ -139,7 +135,7 @@ chill.addEventListener("click",()=> {
 })
 
 classic.addEventListener("click",()=> {
-    console.log("CLASSIC SELECTED")
+   
     startMessage.style.display = "none"
     gameType = "classic"
 
@@ -157,12 +153,12 @@ classic.addEventListener("click",()=> {
 })
 
 challenge.addEventListener("click",()=> {
-    console.log("CHALLENGE SELECTED")
+    
     startMessage.style.display = "none"
     gameType = "challenge"
 
     aliens.forEach(ship => {
-        setParams(15,[2,4],0.8,ship,[7,11],[3,6],[0.65,0.75])
+        setParams(20,[2,4],0.8,ship,[7,11],[3,6],[0.65,0.75])
     })
 
     setShipStats()
@@ -179,49 +175,18 @@ challenge.addEventListener("click",()=> {
 
 })
 
-// pause.addEventListener("click",() => {
-//     if(pause.classList.contains("playing")){
-//         pause.innerText = "Play Music"
-//         pause.classList.remove("playing")
-//         lofi.pause()
-//     } else {
-//         pause.innerText = "Pause Music"
-//         pause.classList.add("playing")
-//         lofi.play()
-//     }
-    
-// })
-
-// function pausePlay(active) {
-//     if(music.src === playSymbol){
-//         console.log("Changing to pause")
-//         music.setAttribute("src", './Resources/pause.png');
-//         active.play()
-//     } else if(music.src === pauseSymbol){
-//         console.log("Changing to play")
-
-//         music.setAttribute("src", './Resources/play.png');
-//         active.pause()
-//     }
-// }
-
 music.addEventListener("click",()=> {
-    console.log("Button working?")
-    console.log(music.src + " " + playSymbol + " " + pauseSymbol)
 
     if(music.src.includes('play')){
-        console.log("Changing to pause")
         music.setAttribute('src', './Resources/pause.png');
         activeSong.play()
     } else if(music.src.includes('pause')){
-        console.log("Changing to play")
-
         music.setAttribute('src', './Resources/play.png');
         activeSong.pause()
     }
 })
 
-
+//DISPLAY START MESSAGE ON PAGE LOAD
 startMessage.style.opacity = "1"
 
 header.addEventListener("mouseover", ()=>{
@@ -235,9 +200,6 @@ header.addEventListener("mouseover", ()=>{
 
 
 
-
-
-
 //function taken from https://stackoverflow.com/questions/45735472/generate-a-random-number-between-2-values-to-2-decimals-places-in-javascript
 function genRand(min, max, decimalPlaces) {  
     var rand = Math.random() < 0.5 ? ((1-Math.random()) * (max-min) + min) : (Math.random() * (max-min) + min);  // could be min or max or anything in between
@@ -245,15 +207,6 @@ function genRand(min, max, decimalPlaces) {
     return Math.floor(rand*power) / power;
 }
 
-class AlienShip {
-
-    constructor(hull, firepower, accuracy) {
-        this.hull = hull;
-        this.firepower = firepower;
-        this.accuracy = accuracy;
-    }
-
-}
 
 // DECLARE SHIP AND ALIEN SHIP OBJECTS / INITIALIZE RAND VALUES FOR ALIEN SHIPS
 
@@ -381,13 +334,10 @@ function updateShipHulls (shipID) {
         if(ship.accuracy > Math.random()) {
             damageDealt += ship.firepower;
             alienShip1.hull -= hit;
-            showHit("alien");
-            console.log("DIRECT HIT!")
-            
+            showHit("alien");            
             
         } else {
             showMiss("self")
-            console.log("YOU MISSED! REGROUP!")
         }
 
         //CHECK FOR ALIEN SHIP DAMANGE OR DEATH / OFFER RETREAT
@@ -398,10 +348,7 @@ function updateShipHulls (shipID) {
             alienHull1.innerText = "DESTROYED!"
 
             boom(boom1,li1)
-
-            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(1)
-            // retreat = prompt(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`);
             shipDown();
             currentAlienShip++
 
@@ -413,12 +360,10 @@ function updateShipHulls (shipID) {
                 },500)
                 showHit("self");
                 damageTaken += alienShip1.firepower;
-                console.log(damageTaken)
-                console.log("ALIEN HIT! You took " + alienShip1.firepower + " damage!")
+
 
             } else {
                 showMiss("alien")
-                console.log("ALIEN MISS!")
             }
         }
 
@@ -428,11 +373,9 @@ function updateShipHulls (shipID) {
             damageDealt += ship.firepower;
             alienShip2.hull -= hit;
             showHit("alien");
-            console.log("DIRECT HIT!")
             
         } else {
             showMiss("self")
-            console.log("YOU MISSED! REGROUP!")
         }
         
         if(alienShip2.hull <= 0) {
@@ -442,8 +385,6 @@ function updateShipHulls (shipID) {
 
             boom(boom2,li2)
 
-
-            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(2);
 
             shipDown();
@@ -458,10 +399,8 @@ function updateShipHulls (shipID) {
                 showHit("self");
                 damageTaken += alienShip2.firepower;
 
-                console.log("ALIEN HIT! You took " + alienShip2.firepower + " damage!")
-
             } else {
-                console.log("ALIEN MISS!")
+                showMiss("alien")
             }
         }
 
@@ -471,11 +410,9 @@ function updateShipHulls (shipID) {
             damageDealt += ship.firepower;
             alienShip3.hull -= hit;
             showHit("alien");
-            console.log("DIRECT HIT!")
             
         } else {
             showMiss("self")
-            console.log("YOU MISSED! REGROUP!")
         }
         
         if(alienShip3.hull <= 0) {
@@ -485,7 +422,6 @@ function updateShipHulls (shipID) {
 
             boom(boom3,li3)
 
-            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(3);
 
             shipDown();
@@ -500,10 +436,9 @@ function updateShipHulls (shipID) {
                 showHit("self");
                 damageTaken += alienShip3.firepower;
 
-                console.log("ALIEN HIT! You took " + alienShip3.firepower + " damage!")
 
             } else {
-                console.log("ALIEN MISS!")
+                showMiss("alien")
             }
         }
 
@@ -513,11 +448,9 @@ function updateShipHulls (shipID) {
             damageDealt += ship.firepower;
             alienShip4.hull -= hit;
             showHit("alien");
-            console.log("DIRECT HIT!")
             
         } else {
             showMiss("self")
-            console.log("YOU MISSED! REGROUP!")
         }
         
         if(alienShip4.hull <= 0) {
@@ -527,7 +460,6 @@ function updateShipHulls (shipID) {
 
             boom(boom4,li4)
 
-            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(4);
 
             shipDown();
@@ -542,10 +474,9 @@ function updateShipHulls (shipID) {
                 showHit("self");
                 damageTaken += alienShip4.firepower;
 
-                console.log("ALIEN HIT! You took " + alienShip4.firepower + " damage!")
 
             } else {
-                console.log("ALIEN MISS!")
+                showMiss("alien")
             }
         }
 
@@ -556,11 +487,9 @@ function updateShipHulls (shipID) {
             damageDealt += ship.firepower;
             alienShip5.hull -= hit;
             showHit("alien");
-            console.log("DIRECT HIT!")
             
         } else {
             showMiss("self")
-            console.log("YOU MISSED! REGROUP!")
         }
         
         if(alienShip5.hull <= 0) {
@@ -570,7 +499,6 @@ function updateShipHulls (shipID) {
 
             boom(boom5,li5)
 
-            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(5);
 
             shipDown();
@@ -585,10 +513,8 @@ function updateShipHulls (shipID) {
                 showHit("self");
                 damageTaken += alienShip5.firepower;
 
-                console.log("ALIEN HIT! You took " + alienShip5.firepower + " damage!")
-
             } else {
-                console.log("ALIEN MISS!")
+                showMiss("alien")
             }
         }
 
@@ -598,11 +524,9 @@ function updateShipHulls (shipID) {
             damageDealt += ship.firepower;
             alienShip6.hull -= hit;
             showHit("alien");
-            console.log("DIRECT HIT!")
             
         } else {
             showMiss("self")
-            console.log("YOU MISSED! REGROUP!")
         }
         
         if(alienShip6.hull <= 0) {
@@ -612,7 +536,6 @@ function updateShipHulls (shipID) {
 
             boom(boom6,li6)
 
-            console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
             showShipDestroyMessage(6);
 
             shipDown();
@@ -627,11 +550,8 @@ function updateShipHulls (shipID) {
                 showHit("self");
                 damageTaken += alienShip6.firepower;
 
-                console.log("ALIEN HIT! You took " + alienShip6.firepower + " damage!")
-
             } else {
-                
-                console.log("ALIEN MISS!")
+                showMiss("alien")
             }
         }
     }
@@ -640,65 +560,6 @@ function updateShipHulls (shipID) {
    damageDealtDOM.innerText = damageDealt;
 
 }
-
-
-//--------------------------------------------------------------------------------
-// function updateShipHulls(shipID){
-
-//     if(currentAlienShip === 6) {
-//         victory.style.display = "block"
-//         return console.log("You won!");
-//     }
-
-//     //ASSIGN DAMAGE VALUE
-
-//     let hit = ship.firepower;
-//     for(let i = 0; i < aliens.length; i++) {
-//         if((i + 1)=== shipID){
-//             if(ship.accuracy > Math.random()) {
-//                 alienShip6.hull -= hit;
-//                 showHit("alien");
-//                 console.log("DIRECT HIT!")
-                
-//             } else {
-//                 showMiss("self")
-//                 console.log("YOU MISSED! REGROUP!")
-//             }
-            
-//             if(alienShip6.hull <= 0) {
-//                 alienShip6.dead = true;
-//                 alienHull6.style.fontSize = "18px"
-//                 alienHull6.innerText = "DESTROYED!"
-//                 console.log(`You've destroyed ship #${shipID + 1}! Do you want to retreat? (y/n)`)
-//                 showShipDestroyMessage(6);
-    
-    
-//                 if(retreat === "y") {
-//                     retreatAnimation();
-//                     return;
-//                 }
-//                 shipDown();
-//                 currentAlienShip++
-    
-//             } else {
-//                 alienHull6.innerText = alienShip6.hull;
-//                 if(alienShip6.accuracy > Math.random()) {
-//                     setTimeout(() => {
-//                         updateHull(alienShip6.firepower);
-//                     },500)
-//                     showHit("self");
-//                     console.log("ALIEN HIT! You took " + alienShip6.firepower + " damage!")
-    
-//                 } else {
-                    
-//                     console.log("ALIEN MISS!")
-//                 }
-//             }
-//         }
-//     }
-// }
-//--------------------------------------------------------------------------------
-
 
 //DISPLAY DOWNED SHIP MESSAGE
 
@@ -749,7 +610,6 @@ function showMiss (type) {
 //DISPLAY ALIEN SHIP DEATH GIF
 
 function shipDown() {
-    console.log(gifBank[Math.floor(Math.random(gifBank.length))])
     if(gifs){
         schwartz.src = gifBank[Math.floor(Math.random()*gifBank.length)]
         schwartz.style.display = "block"
@@ -757,8 +617,6 @@ function shipDown() {
             schwartz.style.display = "none"
         },3000)
     }
-    console.log(gifBank[Math.floor(Math.random(gifBank.length))])
-
 }
 
 function boom(id,liNum) {
@@ -781,10 +639,23 @@ function boom(id,liNum) {
 //DISPLAY RETREAT GIF
 
 function retreatAnimation () {
-    bye.style.opacity = "1"
-    bye.style.top = "0%"
-    bye.style.height = "80vh"
-    bye.style.transform = "translateY(0)"
+    if(gameType != "challenge"){
+        bye.style.opacity = "1"
+        bye.style.top = "0%"
+        bye.style.height = "80vh"
+        bye.style.transform = "translateY(0)"
+    } else {
+        bye.style.opacity = "1"
+        bye.style.top = "0%"
+        bye.style.height = "80vh"
+        bye.style.transform = "translateY(0)"
+        setTimeout(()=> {
+            bye.style.opacity = "0"
+            bye.style.top = "200%"
+            bye.style.height = "80vh"
+            bye.style.transform = "translateY(0)"
+        },5000)
+    }
 }
 
 //UPDATE USER HULL IN OBJECT AND DOM
@@ -794,7 +665,6 @@ function updateHull (firepower) {
         dizzy.style.display = "block"
         setTimeout(()=> {
             dizzy.style.display = "none"
-            console.log("TIMEOUT BABY BOI")
         },2000)
         
     }
@@ -802,6 +672,12 @@ function updateHull (firepower) {
     
     userHealth.innerText = ship.hull;
     if(ship.hull <= 0 && gameType === "challenge"){
+
+        if(startTime > 0){
+            ship.hull += 15
+            updateHealth()
+        } 
+
         timeout.style.display = "block"
         setTimeout(()=> {
             timeout.style.display = "none"
@@ -814,14 +690,11 @@ function updateHull (firepower) {
 }
 
 function setShipsDOM() {
-        console.log("SHIP SELECITON = " + shipSelection)
         if(shipSelection == 4) {
             li5.style.display = "none"
             li6.style.display = "none"
         } else if (shipSelection == 5) {
-            li6.style.display = "none"
-            
-            console.log("You should be working...")
+            li6.style.display = "none"            
         }
 
 }
@@ -854,7 +727,6 @@ timer.addEventListener("click",startTimer)
 
 
 function startTimer() {
-    console.log(timer.classList)
     if(!timer.classList.contains("running")){
         timer.classList.add("running")
 
@@ -907,7 +779,6 @@ function displayGameOver() {
 }
 
 function changeTimer() {
-    console.log("changing")
     startTime = slider.value
     timer.innerText = slider.value
 }
